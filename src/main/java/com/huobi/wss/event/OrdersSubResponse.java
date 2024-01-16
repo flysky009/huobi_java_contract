@@ -44,6 +44,7 @@ public class OrdersSubResponse {
     private String op;
     private String topic;
     private long ts;
+    private String uid;
     private String symbol;
     @SerializedName("contract_type")
     private String contractType;
@@ -81,7 +82,16 @@ public class OrdersSubResponse {
     private BigDecimal marginFrozen;
     private BigDecimal profit;
     private List<TradeBean> trade;
-
+    @SerializedName("liquidation_type")
+    private BigDecimal liquidationType;
+    @SerializedName("canceled_at")
+    private Long canceledAt;
+    @SerializedName("fee_asset")
+    private String feeAsset;
+    @SerializedName("margin_mode")
+    private String marginMode;
+    @SerializedName("margin_account")
+    private String marginAccount;
 
     @Data
     @AllArgsConstructor

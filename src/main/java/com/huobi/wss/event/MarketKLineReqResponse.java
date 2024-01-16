@@ -1,5 +1,6 @@
 package com.huobi.wss.event;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -49,6 +50,7 @@ public class MarketKLineReqResponse {
         private BigDecimal amount;
         private BigDecimal vol;
         private BigDecimal count;
-
+        @SerializedName("trade_turnover")
+        private BigDecimal tradeTurnover;
     }
 }

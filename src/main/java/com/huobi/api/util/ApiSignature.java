@@ -32,7 +32,7 @@ public class ApiSignature {
      * @param appKey       AppKeyId.
      * @param appSecretKey AppKeySecret.
      * @param method       请求方法，"GET"或"POST"
-     * @param host         请求域名，例如"be.huobi.com"
+     * @param "host"         请求域名，例如"be.huobi.com"
      * @param uri          请求路径，注意不含?以及后的参数，例如"/v1/api/info"
      * @param params       原始请求参数，以Key-Value存储，注意Value不要编码
      */

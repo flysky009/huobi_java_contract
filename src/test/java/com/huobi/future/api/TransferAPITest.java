@@ -1,8 +1,8 @@
 package com.huobi.future.api;
 
 import com.alibaba.fastjson.JSON;
-import com.huobi.api.response.transfer.FuturesTransferResponse;
-import com.huobi.api.service.transfer.TransferApiServiceImpl;
+import com.huobi.api.response.coin_futures.transfer.FuturesTransferResponse;
+import com.huobi.api.service.coin_futures.transfer.TransferApiServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;

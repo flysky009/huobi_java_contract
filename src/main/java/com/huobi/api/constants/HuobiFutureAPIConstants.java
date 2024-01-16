@@ -34,6 +34,10 @@ public class HuobiFutureAPIConstants {
     public static final String MARK_PRICE_KLINE = "/index/market/history/mark_price_kline"; // 25.获取标记价格的K线数据
 
     public static final String MARKET_BBO = "/market/bbo"; // 26.获取市场最优挂单
+    public static final String BATCH_MERGED_V2 = "/v2/market/detail/batch_merged"; // 批量获取聚合行情（V2）
+    public static final String CONTRACT_LIQUIDATION_ORDERS_V3  = "/api/v3/contract_liquidation_orders"; // 获取强平订单(新)
+    public static final String CONTRACT_QUERY_ELEMENTS = "/api/v1/contract_query_elements"; // 合约要素
+
 
     //合约资产接口
     public static final String CONTRACT_ACCOUNT_INFO = "/api/v1/contract_account_info"; // 1.获取用户账户信息
@@ -59,6 +63,9 @@ public class HuobiFutureAPIConstants {
     public static final String CONTRACT_SUB_AUTH="/api/v1/contract_sub_auth"; //18、批量设置子账户交易权限
     public static final String CONTRACT_SUB_ACCOUNT_INFO_LIST="/api/v1/contract_sub_account_info_list"; //19、批量获取子账户资产信息
     public static final String CONTRACT_BALANCE_VALUATION = "/api/v1/contract_balance_valuation"; // 20.获取账户总资产估值
+    public static final String CONTRACT_FINANCIAL_RECORD_V3 = "/api/v3/contract_financial_record"; // 查询用户财务记录(新)
+    public static final String CONTRACT_FINANCIAL_RECORD_EXACT_V3 = "/api/v3/contract_financial_record_exact"; // 组合查询用户财务记录(新)
+
 
     //合约交易接口
     public static final String CONTRACT_ORDER = "/api/v1/contract_order"; // 1.合约下单
@@ -95,9 +102,17 @@ public class HuobiFutureAPIConstants {
     public static final String CONTRACT_TRACK_CANCELALL = "/api/v1/contract_track_cancelall"; // 跟踪委托订单全部撤单
     public static final String CONTRACT_TRACK_OPENORDERS = "/api/v1/contract_track_openorders"; // 跟踪委托订单当前委托
     public static final String CONTRACT_TRACK_HISORDERS = "/api/v1/contract_track_hisorders"; // 跟踪委托订单历史委托
+    public static final String CONTRACT_CANCEL_AFTER = "/api/v1/contract-cancel-after"; // 自动撤单
+    public static final String CONTRACT_HISORDERS_V3 = "/api/v3/contract_hisorders"; // 获取合约历史委托(新)
+    public static final String CONTRACT_HISORDERS_EXACT_V3 = "/api/v3/contract_hisorders_exact"; // 组合查询合约历史委托(新)
+    public static final String CONTRACT_MATCHRESULTS_V3 = "/api/v3/contract_matchresults"; // 获取历史成交记录(新)
+    public static final String CONTRACT_MATCHRESULTS_EXACT_V3 = "/api/v3/contract_matchresults_exact"; // 组合查询历史成交记录接口(新)
+
+
 
     //合约划转接口
     public static final String FUTURES_TRANSFER = "/v1/futures/transfer"; // 1.现货-合约账户间进行资金的划转
+    public static final String ACCOUNT_TRANSFER = "/v2/account/transfer"; // 现货-合约账户进行资金的划转
 
 
 }

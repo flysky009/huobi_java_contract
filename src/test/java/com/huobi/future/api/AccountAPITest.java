@@ -1,9 +1,9 @@
 package com.huobi.future.api;
 
 import com.alibaba.fastjson.JSON;
-import com.huobi.api.request.account.*;
-import com.huobi.api.response.account.*;
-import com.huobi.api.service.account.AccountAPIServiceImpl;
+import com.huobi.api.request.coin_futures.account.*;
+import com.huobi.api.response.coin_futures.account.*;
+import com.huobi.api.service.coin_futures.account.AccountAPIServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -36,10 +36,10 @@ public class AccountAPITest implements BaseTest {
 
     @Test
     public void getContractSubAccountList() {
-        ContractSubAccountListResponse response = huobiAPIService.getContractSubAccountList("btc");
+        ContractSubAccountListResponse response = huobiAPIService.getContractSubAccountList("btc","",null);
         logger.debug("3.查询母账户下所有子账户资产信息：{}", JSON.toJSONString(response));
 
-        response = huobiAPIService.getContractSubAccountList("");
+        response = huobiAPIService.getContractSubAccountList("","",null);
         logger.debug("3.查询母账户下所有子账户资产信息：{}", JSON.toJSONString(response));
     }
 

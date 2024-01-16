@@ -47,6 +47,12 @@ public class AccountsSubResponse {
          */
 
         private String symbol;
+        @SerializedName("contract_code")
+        private String contractCode;
+        @SerializedName("margin_asset")
+        private String marginAsset;
+        @SerializedName("trade_partition")
+        private String tradePartition;
         @SerializedName("margin_balance")
         private BigDecimal marginBalance;
         @SerializedName("margin_static")
@@ -71,6 +77,10 @@ public class AccountsSubResponse {
         private int leverRate;
         @SerializedName("adjust_factor")
         private BigDecimal adjustFactor;
+        @SerializedName("margin_mode")
+        private String marginMode;
+        @SerializedName("margin_account")
+        private String marginAccount;
 
     }
 }

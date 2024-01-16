@@ -40,6 +40,6 @@ public class MarketDepthSubResponse {
         private String ch;
         private List<List<BigDecimal>> bids;
         private List<List<BigDecimal>> asks;
-
+        private String event;
     }
 }

@@ -2,9 +2,9 @@ package com.huobi.future.api;
 
 import com.alibaba.fastjson.JSON;
 import com.huobi.api.enums.TimePeriodTypeEnum;
-import com.huobi.api.request.account.ContractSettlementRecordsRequest;
-import com.huobi.api.response.market.*;
-import com.huobi.api.service.market.MarketAPIServiceImpl;
+import com.huobi.api.request.coin_futures.account.ContractSettlementRecordsRequest;
+import com.huobi.api.response.coin_futures.market.*;
+import com.huobi.api.service.coin_futures.market.MarketAPIServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -66,7 +66,7 @@ public class MarketAPITest implements BaseTest {
     @Test
     public void getMarketHistoryKline() {
         MarketHistoryKlineResponse result =
-                huobiAPIService.getMarketHistoryKline("btc_cw", "1min", 10);
+                huobiAPIService.getMarketHistoryKline("btc_cw", "1min", 10, null, null);
         logger.debug("7.获取K线数据：{}", JSON.toJSONString(result));
     }
 
