@@ -685,7 +685,7 @@ public class AccountAPIServiceImpl implements AccountAPIService {
         String body;
         Map<String, Object> params = new HashMap<>();
         try {
-            body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_UNIFIED_ACCOUNT_TYPE, params);
+            body = HbdmHttpClient.getInstance().doGetKey(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_UNIFIED_ACCOUNT_TYPE, params);
             logger.debug("body:{}", body);
             SwapUnifiedAccountTypeResponse response = JSON.parseObject(body, SwapUnifiedAccountTypeResponse.class);
             if (response.getCode() != null && response.getCode() == 200) {
@@ -743,7 +743,7 @@ public class AccountAPIServiceImpl implements AccountAPIService {
             if (request.getFromId() != null) {
                 params.put("from_id", request.getFromId());
             }
-            body = HbdmHttpClient.getInstance().doGetKey(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_LIQUIDATION_ORDERS_V3, params);
+            body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_LIQUIDATION_ORDERS_V3, params);
             logger.debug("body:{}", body);
             SwapLiquidationOrdersV3Response response = JSON.parseObject(body, SwapLiquidationOrdersV3Response.class);
             if (response.getCode() != null && response.getCode() == 200) {
@@ -871,6 +871,38 @@ public class AccountAPIServiceImpl implements AccountAPIService {
             logger.debug("body:{}", body);
             FixPositionMarginChangeRecordResponse response = JSON.parseObject(body, FixPositionMarginChangeRecordResponse.class);
             if (response.getCode() != null && response.getCode() == 200) {
+                return response;
+            }
+        } catch (Exception e) {
+            throw new ApiException(e);
+        }
+        throw new ApiException(body);
+    }
+
+    @Override
+    public SwapSubAuthListResponse getSwapSubAuthList(SwapSubAuthListRequest request) {
+        String body;
+        Map<String, Object> params = new HashMap<>();
+        try {
+            if (request.getStartTime() != null) {
+                params.put("start_time", request.getStartTime());
+            }
+            if (request.getEndTime() != null) {
+                params.put("end_time", request.getEndTime());
+            }
+            if (StringUtils.isNotEmpty(request.getDirect())) {
+                params.put("direct", request.getDirect());
+            }
+            if (request.getFromId() != null) {
+                params.put("from_id", request.getFromId());
+            }
+            if (StringUtils.isNotEmpty(request.getSubUid())) {
+                params.put("sub_uid", request.getSubUid());
+            }
+            body = HbdmHttpClient.getInstance().doGetKey(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_SUB_AUTH_LIST, params);
+            logger.debug("body:{}", body);
+            SwapSubAuthListResponse response = JSON.parseObject(body, SwapSubAuthListResponse.class);
+            if ("ok".equalsIgnoreCase(response.getStatus())) {
                 return response;
             }
         } catch (Exception e) {

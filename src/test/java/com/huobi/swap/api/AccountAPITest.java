@@ -2,7 +2,9 @@ package com.huobi.swap.api;
 
 import com.alibaba.fastjson.JSON;
 import com.huobi.api.request.coin_swap.account.*;
+import com.huobi.api.request.usdt.account.SwapSubAuthListRequest;
 import com.huobi.api.response.coin_swap.account.*;
+import com.huobi.api.response.usdt.account.SwapSubAuthListResponse;
 import com.huobi.api.service.coin_swap.account.AccountAPIServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -193,5 +195,31 @@ public class AccountAPITest implements BaseTest {
     public void getSwapBalanceValuation(){
         SwapBalanceValuationResponse response=huobiAPIService.getSwapBalanceValuation("cny");
         logger.debug("20.获取账户总资产估值：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapFinancialRecordV3(){
+        SwapFinancialRecordV3Request request = SwapFinancialRecordV3Request.builder()
+                .contract("BTC-USDT")
+                .build();
+        SwapFinancialRecordV3Response response = huobiAPIService.getSwapFinancialRecordV3(request);
+        logger.debug("21.查询用户财务记录(新)：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapFinancialRecordExactV3(){
+        SwapFinancialRecordExactV3Request request = SwapFinancialRecordExactV3Request.builder()
+                .contract("BTC-USD")
+                .build();
+        SwapFinancialRecordExactV3Response response = huobiAPIService.getSwapFinancialRecordExactV3(request);
+        logger.debug("22.组合查询用户财务记录(新)：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapSubAuthList(){
+        SwapSubAuthListRequest request = SwapSubAuthListRequest.builder()
+                .build();
+        SwapSubAuthListResponse response = huobiAPIService.getSwapSubAuthList(request);
+        logger.debug("23.查询子账户交易权限：{}", JSON.toJSONString(response));
     }
 }

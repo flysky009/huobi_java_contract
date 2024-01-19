@@ -21,6 +21,7 @@ public class PositionsSubResponse {
     private String op;
     private String topic;
     private Long ts;
+    private String uid;
     private String event;
     private List<DataBean> data;
 
@@ -75,5 +76,12 @@ public class PositionsSubResponse {
         private String marginMode;
         @SerializedName("margin_account")
         private String marginAccount;
+        @SerializedName("business_type")
+        private String businessType;
+        private String pair;
+        @SerializedName("position_mode")
+        private String positionMode;
+        @SerializedName("adl_risk_percent")
+        private BigDecimal adlRiskPercent;
     }
 }

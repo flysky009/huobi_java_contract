@@ -1113,7 +1113,7 @@ public class TradeAPIServiceImpl implements TradeAPIService {
             if (StringUtils.isNotEmpty(request.getMarginAccount())) {
                 params.put("margin_account", request.getMarginAccount());
             }
-            body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_POSITION_SIDE, params);
+            body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_POSITION_SIDE, params);
             logger.debug("body:{}", body);
             SwapPositionSideResponse response = JSON.parseObject(body, SwapPositionSideResponse.class);
             if ("ok".equalsIgnoreCase(response.getStatus())){

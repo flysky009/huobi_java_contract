@@ -24,6 +24,7 @@ public class AccountsSubResponse {
     private String topic;
     private long ts;
     private String event;
+    private String uid;
     private List<DataBean> data;
 
 
@@ -81,6 +82,7 @@ public class AccountsSubResponse {
         private String marginMode;
         @SerializedName("margin_account")
         private String marginAccount;
-
+        @SerializedName("position_mode")
+        private String positionMode;
     }
 }

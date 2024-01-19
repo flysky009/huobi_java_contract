@@ -76,4 +76,6 @@ public interface AccountAPIService {
     FixPositionMarginChangeResponse getFixPositionMarginChange(FixPositionMarginChangeRequest request);
 
     FixPositionMarginChangeRecordResponse getFixPositionMarginChangeRecord(FixPositionMarginChangeRecordRequest request);
+
+    SwapSubAuthListResponse getSwapSubAuthList(SwapSubAuthListRequest request);
 }

@@ -4,7 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.huobi.api.request.coin_swap.account.LinearSwapBasisRequest;
 import com.huobi.api.request.coin_swap.account.SwapLiquidationOrdersRequest;
 import com.huobi.api.request.coin_swap.account.SwapMarketHistoryKlineRequest;
+import com.huobi.api.request.coin_swap.market.SwapSettlementRecordsRequest;
+import com.huobi.api.request.usdt.account.SwapLiquidationOrdersV3Request;
 import com.huobi.api.response.coin_swap.market.*;
+import com.huobi.api.response.usdt.account.SwapLiquidationOrdersV3Response;
+import com.huobi.api.response.usdt.market.BatchMergedV2Response;
+import com.huobi.api.response.usdt.market.SwapQueryElementsResponse;
+import com.huobi.api.response.usdt.market.SwapSettlementRecordsResponse;
 import com.huobi.api.service.coin_swap.market.MarketAPIServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -219,5 +225,54 @@ public class MarketAPITest implements BaseTest {
     public void getMarketBbo(){
         MarketBboResponse response=huobiAPIService.getMarketBbo("ltc-usd");
         logger.debug("28.获取市场最优挂单:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapLiquidationOrdersV3(){
+        SwapLiquidationOrdersV3Request request = SwapLiquidationOrdersV3Request.builder()
+                .contract("BTC-USD")
+                .tradeType(0)
+                .build();
+        SwapLiquidationOrdersV3Response response = huobiAPIService.getSwapLiquidationOrdersV3(request);
+        logger.debug("29.获取强平订单(新):{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapSettlementRecords(){
+        SwapSettlementRecordsRequest request = SwapSettlementRecordsRequest.builder()
+                .contractCode("BTC-USD")
+                .build();
+        SwapSettlementRecordsResponse response = huobiAPIService.getSwapSettlementRecords(request);
+        logger.debug("30.查询平台历史结算记录:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapQueryElements(){
+        SwapQueryElementsResponse response = huobiAPIService.getSwapQueryElements("BTC");
+        logger.debug("31.合约要素:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getBatchMergedV2(){
+        BatchMergedV2Response response = huobiAPIService.getBatchMergedV2(null);
+        logger.debug("32.批量获取聚合行情（V2）:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getTimestamp(){
+        TimestampReponse response = huobiAPIService.getTimestamp();
+        logger.debug("33.获取当前系统时间戳:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getHeartBeat(){
+        HeartBeatResponse response = huobiAPIService.getHeartBeat();
+        logger.debug("34.查询系统是否可用:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSummary(){
+        SummaryResponse response = huobiAPIService.getSummary();
+        logger.debug("35.获取当前系统状态:{}", JSON.toJSONString(response));
     }
 }

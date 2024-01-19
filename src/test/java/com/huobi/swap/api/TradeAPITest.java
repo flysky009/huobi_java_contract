@@ -1,10 +1,19 @@
 package com.huobi.swap.api;
 
 import com.alibaba.fastjson.JSON;
+import com.google.errorprone.annotations.Var;
 import com.huobi.api.enums.DirectionEnum;
 import com.huobi.api.enums.OffsetEnum;
 import com.huobi.api.request.coin_swap.trade.*;
+import com.huobi.api.request.usdt.trade.SwapHisordersExactV3Request;
+import com.huobi.api.request.usdt.trade.SwapHisordersV3Request;
+import com.huobi.api.request.usdt.trade.SwapMatchResultsExactV3Request;
+import com.huobi.api.request.usdt.trade.SwapMatchResultsV3Request;
 import com.huobi.api.response.coin_swap.trade.*;
+import com.huobi.api.response.usdt.trade.SwapHisordersExactV3Response;
+import com.huobi.api.response.usdt.trade.SwapHisordersV3Response;
+import com.huobi.api.response.usdt.trade.SwapMatchResultsExactV3Response;
+import com.huobi.api.response.usdt.trade.SwapMatchResultsV3Response;
 import com.huobi.api.service.coin_swap.trade.TradeAPIServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -411,4 +420,56 @@ public class TradeAPITest implements BaseTest {
         logger.debug("29.跟踪委托订单当前委托：{}", JSON.toJSONString(response));
     }
 
+    @Test
+    public void swapCancelAfterResponse(){
+        SwapCancelAfterRequest request = SwapCancelAfterRequest.builder()
+                .onOff(1)
+                .build();
+        SwapCancelAfterResponse response = huobiAPIService.swapCancelAfterResponse(request);
+        logger.debug("30.自动撤单：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void swapHisordersV3Response(){
+        SwapHisordersV3Request request = SwapHisordersV3Request.builder()
+                .contract("BTC-USD")
+                .tradeType(0)
+                .type(1)
+                .status("0")
+                .build();
+        SwapHisordersV3Response response = huobiAPIService.swapHisordersV3Response(request);
+        logger.debug("31.获取合约历史委托(新)：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void swapHisordersExactV3Response(){
+        SwapHisordersExactV3Request request = SwapHisordersExactV3Request.builder()
+                .contract("BTC-USD")
+                .tradeType(5)
+                .type(1)
+                .status("0")
+                .build();
+        SwapHisordersExactV3Response response = huobiAPIService.swapHisordersExactV3Response(request);
+        logger.debug("32.组合查询合约历史委托(新)：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void swapMatchResultsV3Response(){
+        SwapMatchResultsV3Request request = SwapMatchResultsV3Request.builder()
+                .contract("BTC-USD")
+                .tradeType(0)
+                .build();
+        SwapMatchResultsV3Response response = huobiAPIService.swapMatchResultsV3Response(request);
+        logger.debug("33.获取历史成交记录（新）：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void swapMatchResultsExactV3Response(){
+        SwapMatchResultsExactV3Request request = SwapMatchResultsExactV3Request.builder()
+                .contract("BTC-USDT")
+                .tradeType(0)
+                .build();
+        SwapMatchResultsExactV3Response response = huobiAPIService.swapMatchResultsExactV3Response(request);
+        logger.debug("34.组合查询用户历史成交记录（新）：{}", JSON.toJSONString(response));
+    }
 }

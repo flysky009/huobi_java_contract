@@ -421,4 +421,57 @@ public class CrossTradeAPITest implements BaseTest {
         SwapTrackHisordersResponse response=huobiCrossAPIService.swapCrossTrackHisordersResponse(request);
         logger.debug("29.跟踪委托订单当前委托：{}", JSON.toJSONString(response));
     }
+
+    @Test
+    public void swapCrossHisordersExactV3Response(){
+        SwapCrossHisordersExactV3Request request = SwapCrossHisordersExactV3Request.builder()
+                .contract("BTC-USDT")
+                .tradeType(0)
+                .pair("BTC-USDT")
+                .status("0")
+                .type(1)
+                .priceType("opponent")
+                .startTime(1660119810000L)
+                .endTime(1660274746031L)
+                .direct("next")
+                .fromId(1110L)
+                .build();
+        SwapCrossHisordersExactV3Response response = huobiCrossAPIService.swapCrossHisordersExactV3Response(request);
+        logger.debug("30.【全仓】组合查询合约历史委托(新)：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void swapCrossHisordersV3Response(){
+        SwapCrossHisordersV3Request request = SwapCrossHisordersV3Request.builder()
+                .tradeType(0)
+                .type(1)
+                .status("0")
+                .build();
+        SwapCrossHisordersV3Response response = huobiCrossAPIService.swapCrossHisordersV3Response(request);
+        logger.debug("31.【全仓】获取合约历史委托(新)：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void swapCrossMatchResultsV3Response(){
+        SwapCrossMatchResultsV3Request request = SwapCrossMatchResultsV3Request.builder()
+                .contract("BTC-USDT")
+                .build();
+        SwapCrossMatchResultsV3Response response = huobiCrossAPIService.swapCrossMatchResultsV3Response(request);
+        logger.debug("32.【全仓】获取历史成交记录(新)：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void swapCrossMatchResultsExactV3Response(){
+        SwapCrossMatchResultsExactV3Request request = SwapCrossMatchResultsExactV3Request.builder()
+                .contract("BTC-USDT")
+                .build();
+        SwapCrossMatchResultsExactV3Response response = huobiCrossAPIService.swapCrossMatchResultsExactV3Response(request);
+        logger.debug("33.【全仓】获取历史成交记录(新)：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void swapCrossPositionSideResponse(){
+        SwapCrossPositionSideResponse response = huobiCrossAPIService.swapCrossPositionSideResponse("USDT");
+        logger.debug("34.【全仓】查询持仓模式：{}", JSON.toJSONString(response));
+    }
 }

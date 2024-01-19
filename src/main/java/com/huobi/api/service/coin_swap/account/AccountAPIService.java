@@ -2,7 +2,9 @@ package com.huobi.api.service.coin_swap.account;
 
 
 import com.huobi.api.request.coin_swap.account.*;
+import com.huobi.api.request.usdt.account.SwapSubAuthListRequest;
 import com.huobi.api.response.coin_swap.account.*;
+import com.huobi.api.response.usdt.account.SwapSubAuthListResponse;
 
 public interface AccountAPIService {
 
@@ -47,4 +49,10 @@ public interface AccountAPIService {
     SwapSubAccountInfoListResponse getSwapSubAccountInfoList(String contractCode,Integer pageIndex,Integer pageSize);
 
     SwapBalanceValuationResponse getSwapBalanceValuation(String ValuationAsset);
+
+    SwapFinancialRecordV3Response getSwapFinancialRecordV3(SwapFinancialRecordV3Request request);
+
+    SwapFinancialRecordExactV3Response getSwapFinancialRecordExactV3(SwapFinancialRecordExactV3Request request);
+
+    SwapSubAuthListResponse getSwapSubAuthList(SwapSubAuthListRequest request);
 }

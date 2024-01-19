@@ -12,7 +12,7 @@ public class SwapCrossHisordersExactV3Request {
     private Long endTime;
     private String direct;
     private Long fromId;
-    private String type;
+    private Integer type;
     private Integer tradeType;
     private String contract;
     private String pair;

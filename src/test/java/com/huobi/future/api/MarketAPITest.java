@@ -3,7 +3,9 @@ package com.huobi.future.api;
 import com.alibaba.fastjson.JSON;
 import com.huobi.api.enums.TimePeriodTypeEnum;
 import com.huobi.api.request.coin_futures.account.ContractSettlementRecordsRequest;
+import com.huobi.api.request.coin_futures.market.ContractLiquidationOrdersV3Request;
 import com.huobi.api.response.coin_futures.market.*;
+import com.huobi.api.response.usdt.market.BatchMergedV2Response;
 import com.huobi.api.service.coin_futures.market.MarketAPIServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -204,4 +206,25 @@ public class MarketAPITest implements BaseTest {
         logger.debug("26.获取市场最优挂单: {}",JSON.toJSONString(response));
     }
 
+    @Test
+    public void getContractLiquidationOrdersV3(){
+        ContractLiquidationOrdersV3Request request = ContractLiquidationOrdersV3Request.builder()
+                .tradeType(5)
+                .symbol("BTC")
+                .build();
+        ContractLiquidationOrdersV3Response response = huobiAPIService.getContractLiquidationOrdersV3(request);
+        logger.debug("27.获取强平订单(新): {}",JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getContractQueryElements(){
+        ContractQueryElementsResponse response = huobiAPIService.getContractQueryElements(null);
+        logger.debug("28.合约要素: {}",JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getBatchMergedV2(){
+        BatchMergedV2Response response = huobiAPIService.getBatchMergedV2(null);
+        logger.debug("29.批量获取聚合行情（V2）: {}",JSON.toJSONString(response));
+    }
 }

@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.huobi.api.constants.HuobiCoinMarginedSwapAPIOptions;
 import com.huobi.api.exception.ApiException;
 import com.huobi.api.request.coin_swap.account.*;
+import com.huobi.api.request.usdt.account.SwapSubAuthListRequest;
 import com.huobi.api.response.coin_swap.account.*;
+import com.huobi.api.response.usdt.account.SwapSubAuthListResponse;
 import com.huobi.api.util.HbdmHttpClient;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -485,6 +487,108 @@ public class AccountAPIServiceImpl implements AccountAPIService {
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiCoinMarginedSwapAPIOptions.SWAP_BALANCE_VALUATION, params);
             logger.debug("body:{}", body);
             SwapBalanceValuationResponse response = JSON.parseObject(body, SwapBalanceValuationResponse.class);
+            if ("ok".equalsIgnoreCase(response.getStatus())) {
+                return response;
+            }
+        } catch (Exception e) {
+            throw new ApiException(e);
+        }
+        throw new ApiException(body);
+    }
+
+    @Override
+    public SwapFinancialRecordV3Response getSwapFinancialRecordV3(SwapFinancialRecordV3Request request) {
+        String body;
+        Map<String, Object> params = new HashMap<>();
+        try {
+            if (request.getStartTime() != null) {
+                params.put("start_time", request.getStartTime());
+            }
+            if (request.getEndTime() != null) {
+                params.put("end_time", request.getEndTime());
+            }
+            if (StringUtils.isNotEmpty(request.getDirect())) {
+                params.put("direct", request.getDirect());
+            }
+            if (request.getFromId() != null) {
+                params.put("from_id", request.getFromId());
+            }
+            if (StringUtils.isNotEmpty(request.getContract())) {
+                params.put("contract", request.getContract().toUpperCase());
+            }
+            if (request.getType() != null) {
+                params.put("type", request.getType());
+            }
+            body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiCoinMarginedSwapAPIOptions.SWAP_FINANCIAL_RECORD_V3, params);
+            logger.debug("body:{}", body);
+            SwapFinancialRecordV3Response response = JSON.parseObject(body, SwapFinancialRecordV3Response.class);
+            if (response.getCode() != null && response.getCode() == 200) {
+                return response;
+            }
+        } catch (Exception e) {
+            throw new ApiException(e);
+        }
+        throw new ApiException(body);
+    }
+
+    @Override
+    public SwapFinancialRecordExactV3Response getSwapFinancialRecordExactV3(SwapFinancialRecordExactV3Request request) {
+        String body;
+        Map<String, Object> params = new HashMap<>();
+        try {
+            if (request.getStartTime() != null) {
+                params.put("start_time", request.getStartTime());
+            }
+            if (request.getEndTime() != null) {
+                params.put("end_time", request.getEndTime());
+            }
+            if (StringUtils.isNotEmpty(request.getDirect())) {
+                params.put("direct", request.getDirect());
+            }
+            if (request.getFromId() != null) {
+                params.put("from_id", request.getFromId());
+            }
+            if (StringUtils.isNotEmpty(request.getContract())) {
+                params.put("contract", request.getContract().toUpperCase());
+            }
+            if (request.getType() != null) {
+                params.put("type", request.getType());
+            }
+            body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiCoinMarginedSwapAPIOptions.SWAP_FINANCIAL_RECORD_EXACT_V3, params);
+            logger.debug("body:{}", body);
+            SwapFinancialRecordExactV3Response response = JSON.parseObject(body, SwapFinancialRecordExactV3Response.class);
+            if (response.getCode() != null && response.getCode() == 200) {
+                return response;
+            }
+        } catch (Exception e) {
+            throw new ApiException(e);
+        }
+        throw new ApiException(body);
+    }
+
+    @Override
+    public SwapSubAuthListResponse getSwapSubAuthList(SwapSubAuthListRequest request) {
+        String body;
+        Map<String, Object> params = new HashMap<>();
+        try {
+            if (request.getStartTime() != null) {
+                params.put("start_time", request.getStartTime());
+            }
+            if (request.getEndTime() != null) {
+                params.put("end_time", request.getEndTime());
+            }
+            if (StringUtils.isNotEmpty(request.getDirect())) {
+                params.put("direct", request.getDirect());
+            }
+            if (request.getFromId() != null) {
+                params.put("from_id", request.getFromId());
+            }
+            if (StringUtils.isNotEmpty(request.getSubUid())) {
+                params.put("sub_uid", request.getSubUid());
+            }
+            body = HbdmHttpClient.getInstance().doGetKey(api_key, secret_key, url_prex + HuobiCoinMarginedSwapAPIOptions.SWAP_SUB_AUTH_LIST, params);
+            logger.debug("body:{}", body);
+            SwapSubAuthListResponse response = JSON.parseObject(body, SwapSubAuthListResponse.class);
             if ("ok".equalsIgnoreCase(response.getStatus())) {
                 return response;
             }

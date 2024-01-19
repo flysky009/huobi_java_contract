@@ -12,7 +12,7 @@ public class ContractHisordersExactV3Request {
     private Long endTime;
     private String direct;
     private Long fromId;
-    private String type;
+    private Integer type;
     private String symbol;
     private Integer tradeType;
     private String status;

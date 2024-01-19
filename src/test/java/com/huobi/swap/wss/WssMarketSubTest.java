@@ -2,10 +2,7 @@ package com.huobi.swap.wss;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
-import com.huobi.wss.event.MarketDepthSubResponse;
-import com.huobi.wss.event.MarketDetailSubResponse;
-import com.huobi.wss.event.MarketKLineSubResponse;
-import com.huobi.wss.event.MarketTradeDetailSubResponse;
+import com.huobi.wss.event.*;
 import com.huobi.wss.handle.WssMarketHandle;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -121,5 +118,29 @@ public class WssMarketSubTest {
         Thread.sleep(Integer.MAX_VALUE);
     }
 
+    @Test
+    public void test5() throws URISyntaxException, InterruptedException {
+        List<String> channels = Lists.newArrayList();
+        channels.add("market.BTC-USD.depth.size_20.high_freq");
+        wssMarketHandle.sub(channels, response -> {
+            logger.info("订阅Market Depth增量数据用户收到的数据===============:{}", JSON.toJSON(response));
+            Long currentTimeMillis = System.currentTimeMillis();
+            MarketDepthDiffSubResponse event = JSON.parseObject(response, MarketDepthDiffSubResponse.class);
+            logger.info("订阅Market Depth增量数据的ts为：{},当前的时间戳为：{},时间间隔为：{}毫秒", event.getTs(), currentTimeMillis, currentTimeMillis - event.getTs());
+        });
+        Thread.sleep(Integer.MAX_VALUE);
+    }
 
+    @Test
+    public void test6() throws URISyntaxException, InterruptedException {
+        List<String> channels = Lists.newArrayList();
+        channels.add("market.BTC-USD.bbo");
+        wssMarketHandle.sub(channels, response -> {
+            logger.info("订阅买一卖一逐笔行情推送用户收到的数据===============:{}", JSON.toJSON(response));
+            Long currentTimeMillis = System.currentTimeMillis();
+            MarketBboSubResponse event = JSON.parseObject(response, MarketBboSubResponse.class);
+            logger.info("订阅买一卖一逐笔行情推送的ts为：{},当前的时间戳为：{},时间间隔为：{}毫秒", event.getTs(), currentTimeMillis, currentTimeMillis - event.getTs());
+        });
+        Thread.sleep(Integer.MAX_VALUE);
+    }
 }

@@ -422,4 +422,58 @@ public class TradeAPITest implements BaseTest {
         ContractTrackHisordersResponse response=huobiAPIService.contractTrackHisordersResponse(request);
         logger.debug("29.跟踪委托订单历史委托:{}",JSON.toJSONString(response));
     }
+
+    @Test
+    public void contractCancelAfterResponse(){
+        ContractCancelAfterRequest request = ContractCancelAfterRequest.builder()
+                .onOff(1)
+                .build();
+        ContractCancelAfterResponse response = huobiAPIService.contractCancelAfterResponse(request);
+        logger.debug("30.自动撤单:{}",JSON.toJSONString(response));
+    }
+
+    @Test
+    public void contractHisordersV3Response(){
+        ContractHisordersV3Request request = ContractHisordersV3Request.builder()
+                .symbol("BTC")
+                .tradeType(0)
+                .type(1)
+                .status("0")
+                .build();
+        ContractHisordersV3Response response = huobiAPIService.contractHisordersV3Response(request);
+        logger.debug("31.获取合约历史委托(新):{}",JSON.toJSONString(response));
+    }
+
+    @Test
+    public void contractHisordersExactV3Response(){
+        ContractHisordersExactV3Request request = ContractHisordersExactV3Request.builder()
+                .symbol("BTC")
+                .tradeType(0)
+                .type(1)
+                .status("0")
+                .build();
+        ContractHisordersExactV3Response response = huobiAPIService.contractHisordersExactV3Response(request);
+        logger.debug("32.组合查询合约历史委托(新):{}",JSON.toJSONString(response));
+    }
+
+    @Test
+    public void contractMatchResultsV3Response(){
+        ContractMatchResultsV3Request request = ContractMatchResultsV3Request.builder()
+                .symbol("BTC")
+                .tradeType(0)
+                .build();
+        ContractMatchResultsV3Response response = huobiAPIService.contractMatchResultsV3Response(request);
+        logger.debug("33.获取历史成交记录(新):{}",JSON.toJSONString(response));
+    }
+
+    @Test
+    public void contractMatchResultsExactV3Response(){
+        ContractMatchResultsExactV3Request request = ContractMatchResultsExactV3Request.builder()
+                .symbol("BTC")
+                .contract("BTC-USD")
+                .tradeType(0)
+                .build();
+        ContractMatchResultsExactV3Response response = huobiAPIService.contractMatchResultsExactV3Response(request);
+        logger.debug("34.组合查询历史成交记录接口(新):{}",JSON.toJSONString(response));
+    }
 }

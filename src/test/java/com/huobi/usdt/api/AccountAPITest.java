@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class AccountAPITest implements BaseTest {
 
 
-    AccountAPIServiceImpl huobiAPIService = new AccountAPIServiceImpl("", "");
+    AccountAPIServiceImpl huobiAPIService = new AccountAPIServiceImpl("dbfd1732-fcd5eec8-13a02ff6-bgrdawsdsd", "d05ed75e-e4de67d0-958e1b82-94062");
 
     @Test
     public void getSwapAccountInfoResponse() {
@@ -212,5 +212,80 @@ public class AccountAPITest implements BaseTest {
     public void getSwapLeverPositionLimit(){
         SwapLeverPositionLimitResponse response=huobiAPIService.getSwapLeverPositionLimit("btc-usdt","",1);
         logger.debug("22.查询用户所有杠杆持仓量限制：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapFinancialRecordV3(){
+        SwapFinancialRecordV3Request request = SwapFinancialRecordV3Request.builder()
+                .marAcct("BTC-USDT")
+                .build();
+        SwapFinancialRecordV3Response response = huobiAPIService.getSwapFinancialRecordV3(request);
+        logger.debug("23.查询用户财务记录(新):{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapFinancialRecordExactV3(){
+        SwapFinancialRecordExactV3Request request = SwapFinancialRecordExactV3Request.builder().marAcct("BTC-USDT").build();
+        SwapFinancialRecordExactV3Response response = huobiAPIService.getSwapFinancialRecordExactV3(request);
+        logger.debug("24.组合查询用户财务记录 (新):{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapUnifiedAccountType(){
+        SwapUnifiedAccountTypeResponse response = huobiAPIService.getSwapUnifiedAccountType();
+        logger.debug("25.账户类型查询:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapSwitchAccountType(){
+        SwapSwitchAccountTypeResponse response = huobiAPIService.getSwapSwitchAccountType(1);
+        logger.debug("26.账户类型更改接口:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapLiquidationOrdersV3(){
+        SwapLiquidationOrdersV3Request request = SwapLiquidationOrdersV3Request.builder().tradeType(5).contract("BTC-USDT").build();
+        SwapLiquidationOrdersV3Response response = huobiAPIService.getSwapLiquidationOrdersV3(request);
+        logger.debug("27.账户类型更改接口:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getUnifiedAccountInfo(){
+        UnifiedAccountInfoResponse response = huobiAPIService.getUnifiedAccountInfo("BTC-USDT");
+        logger.debug("28.查询统一账户资产:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getLinearSwapOverviewAccountInfo(){
+        LinearSwapOverviewAccountInfoResponse response = huobiAPIService.getLinearSwapOverviewAccountInfo();
+        logger.debug("29.可抵扣HT资产查询:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getLinearSwapFeeSwitch(){
+        LinearSwapFeeSwitchResponse response = huobiAPIService.getLinearSwapFeeSwitch(1);
+        logger.debug("30.设置U本位合约手续费抵扣方式:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getFixPositionMarginChange(){
+        FixPositionMarginChangeRequest request = FixPositionMarginChangeRequest.builder().amount(1.0).asset("USDT").contractCode("BTC-USDT").type(1).direction(1).build();
+        FixPositionMarginChangeResponse response = huobiAPIService.getFixPositionMarginChange(request);
+        logger.debug("31.调整逐仓持仓保证金:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getFixPositionMarginChangeRecord(){
+        FixPositionMarginChangeRecordRequest request = FixPositionMarginChangeRecordRequest.builder().asset("USDT").contractCode("BTC-USDT").build();
+        FixPositionMarginChangeRecordResponse response = huobiAPIService.getFixPositionMarginChangeRecord(request);
+        logger.debug("32.查询调整逐仓持仓保证金记录:{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapSubAuthList(){
+        SwapSubAuthListRequest request = SwapSubAuthListRequest.builder()
+                .build();
+        SwapSubAuthListResponse response = huobiAPIService.getSwapSubAuthList(request);
+        logger.debug("33.【通用】查询子账户交易权限:{}", JSON.toJSONString(response));
     }
 }

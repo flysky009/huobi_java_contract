@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.huobi.wss.event.MarketKLineReqResponse;
 import com.huobi.wss.event.MarketTradeDetailReqResponse;
 import com.huobi.wss.handle.WssMarketReqHandle;
-import com.huobi.wss.request.KLineSubRequest;
+import com.huobi.wss.request.WssRequest;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -46,12 +46,12 @@ public class WssMarketReqTest {
                 Date fromDate = DateUtils.parseDate("2020-09-15T00:00:00", "yyyy-MM-dd'T'HH:mm:ss");
                 Date toDate = DateUtils.parseDate("2020-10-30T00:00:01", "yyyy-MM-dd'T'HH:mm:ss");
 
-                KLineSubRequest kLineSubRequest = KLineSubRequest.builder()
+                WssRequest wssRequest = WssRequest.builder()
                         .req("market.BTC-USDT.kline.60min")
                         .from(fromDate.getTime() / 1000)
                         .to(toDate.getTime() / 1000)
                         .build();
-                wssMarketReqHandle.doReq(JSON.toJSONString(kLineSubRequest));
+                wssMarketReqHandle.doReq(JSON.toJSONString(wssRequest));
 
             } catch (Exception e) {
                 e.printStackTrace();

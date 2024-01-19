@@ -198,4 +198,32 @@ public class AccountAPITest implements BaseTest {
         ContractBalanceValuationResponse response=huobiAPIService.getContractBalanceValuation("");
         logger.debug("20.获取账户总资产估值：{}", JSON.toJSONString(response));
     }
+
+    @Test
+    public void getContractFinancialRecordV3(){
+        ContractFinancialRecordV3Request request = ContractFinancialRecordV3Request.builder()
+                .type("3,4,5,6,7,8")
+                .symbol("BTC")
+                .build();
+        ContractFinancialRecordV3Response response = huobiAPIService.getContractFinancialRecordV3(request);
+        logger.debug("21.查询用户财务记录(新)：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getContractFinancialRecordExactV3(){
+        ContractFinancialRecordExactV3Request request = ContractFinancialRecordExactV3Request.builder()
+                .type("3,4,5,6,7,8")
+                .symbol("BTC")
+                .build();
+        ContractFinancialRecordExactV3Response response = huobiAPIService.getContractFinancialRecordExactV3(request);
+        logger.debug("22.组合查询用户财务记录(新)：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getContractSubAuthList(){
+        ContractSubAuthListRequest request = ContractSubAuthListRequest.builder()
+                .build();
+        ContractSubAuthListResponse response = huobiAPIService.getContractSubAuthList(request);
+        logger.debug("23.查询子账户交易权限：{}", JSON.toJSONString(response));
+    }
 }

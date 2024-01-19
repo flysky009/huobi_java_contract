@@ -547,4 +547,36 @@ public class AccountAPIServiceImpl implements AccountAPIService {
         }
         throw new ApiException(body);
     }
+
+    @Override
+    public ContractSubAuthListResponse getContractSubAuthList(ContractSubAuthListRequest request) {
+        String body;
+        try {
+            Map<String, Object> params = new HashMap<>();
+            if (request.getStartTime() != null) {
+                params.put("start_time", request.getStartTime());
+            }
+            if (request.getEndTime() != null) {
+                params.put("end_time", request.getEndTime());
+            }
+            if (StringUtils.isNotEmpty(request.getDirect())) {
+                params.put("direct", request.getDirect());
+            }
+            if (request.getFromId() != null) {
+                params.put("from_id", request.getFromId());
+            }
+            if (StringUtils.isNotEmpty(request.getSubUid())) {
+                params.put("sub_uid", request.getSubUid());
+            }
+            body = HbdmHttpClient.getInstance().doGetKey(api_key, secret_key, url_prex + HuobiFutureAPIConstants.CONTRACT_SUB_AUTH_LIST, params);
+            logger.debug("body:{}",body);
+            ContractSubAuthListResponse response = JSON.parseObject(body, ContractSubAuthListResponse.class);
+            if ("ok".equalsIgnoreCase(response.getStatus())) {
+                return response;
+            }
+        } catch (Exception e) {
+            throw new ApiException(e);
+        }
+        throw new ApiException(body);
+    }
 }

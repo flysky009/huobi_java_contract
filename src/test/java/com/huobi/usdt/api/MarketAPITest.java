@@ -19,7 +19,7 @@ public class MarketAPITest implements BaseTest {
     @Test
     public void getSwapContractInfo() {
         SwapContractInfoResponse result =
-                huobiAPIService.getSwapContractInfo("BTC-USDT-220325", "","","","all","");
+                huobiAPIService.getSwapContractInfo("", "","","","","");
         logger.debug("1.获取合约信息：{}", JSON.toJSONString(result));
     }
 
@@ -223,5 +223,17 @@ public class MarketAPITest implements BaseTest {
     public void getSwapSettlementRecords(){
         SwapSettlementRecordsResponse response=huobiAPIService.getSwapSettlementRecords("btc-usdt",0l,0l,1,20);
         logger.debug("29、查询平台历史结算记录:{}",JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getBatchMergedV2(){
+        BatchMergedV2Response response = huobiAPIService.getBatchMergedV2(null, null);
+        logger.debug("30、批量获取聚合行情（V2）:{}",JSON.toJSONString(response));
+    }
+
+    @Test
+    public void getSwapQueryElements(){
+        SwapQueryElementsResponse response = huobiAPIService.getSwapQueryElements(null);
+        logger.debug("31、合约要素:{}",JSON.toJSONString(response));
     }
 }

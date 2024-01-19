@@ -53,4 +53,6 @@ public interface AccountAPIService {
     ContractFinancialRecordV3Response getContractFinancialRecordV3(ContractFinancialRecordV3Request request);
 
     ContractFinancialRecordExactV3Response getContractFinancialRecordExactV3(ContractFinancialRecordExactV3Request request);
+
+    ContractSubAuthListResponse getContractSubAuthList(ContractSubAuthListRequest request);
 }

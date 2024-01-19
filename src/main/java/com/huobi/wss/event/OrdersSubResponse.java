@@ -78,6 +78,8 @@ public class OrdersSubResponse {
     private BigDecimal fee;
     @SerializedName("trade_avg_price")
     private BigDecimal tradeAvgPrice;
+    @SerializedName("margin_asset")
+    private String marginAsset;
     @SerializedName("margin_frozen")
     private BigDecimal marginFrozen;
     private BigDecimal profit;
@@ -92,6 +94,14 @@ public class OrdersSubResponse {
     private String marginMode;
     @SerializedName("margin_account")
     private String marginAccount;
+    @SerializedName("is_tpsl")
+    private Integer isTpsl;
+    @SerializedName("real_profit")
+    private BigDecimal realProfit;
+    @SerializedName("reduce_only")
+    private Integer reduceOnly;
+    @SerializedName("canceled_source")
+    private String canceledSource;
 
     @Data
     @AllArgsConstructor
@@ -124,6 +134,10 @@ public class OrdersSubResponse {
         @SerializedName("fee_asset")
         private String feeAsset;
         private String role;
+        @SerializedName("real_profit")
+        private BigDecimal realProfit;
+        private BigDecimal profit;
+        private String price;
 
     }
 }
