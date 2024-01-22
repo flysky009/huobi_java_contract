@@ -46,61 +46,46 @@ public class CrossAccountAPITest implements BaseTest {
     }
 
     @Test
+    public void getSwapCrossSubCrossAccountInfoList() {
+        SwapSubAccountInfoListResponse response = huobiCrossAPIService.getSwapCrossSubAccountInfoList("usdt", 1, 20,"");
+        logger.debug("5.批量获取子账户资产信息：{}", JSON.toJSONString(response));
+    }
+
+    @Test
     public void getSwapCrossSubAccountInfo() {
         SwapCrossSubAccountInfoResponse response = huobiCrossAPIService.getSwapCrossSubAccountInfo("", 1l,"");
-        logger.debug("5.查询单个子账户资产信息：{}", JSON.toJSONString(response));
+        logger.debug("6.查询单个子账户资产信息：{}", JSON.toJSONString(response));
         logger.debug(response.getStatus());
     }
 
     @Test
     public void getSwapCrossSubPositionInfo() {
         SwapCrossSubPositionInfoResponse response = huobiCrossAPIService.getSwapCrossSubPositionInfo("", 1l,"","","");
-        logger.debug("6.查询单个子账户持仓信息：{}", JSON.toJSONString(response));
+        logger.debug("7.查询单个子账户持仓信息：{}", JSON.toJSONString(response));
         logger.debug(response.getStatus());
-    }
-
-
-    @Test
-    public void getSwapCrossTransferLimitResponse() {
-        SwapCrossTransferLimitResponse response = huobiCrossAPIService.getSwapCrossTransferLimitResponse("usdt");
-        logger.debug("7.查询用户当前的划转限制：{}", JSON.toJSONString(response));
-        response = huobiCrossAPIService.getSwapCrossTransferLimitResponse("");
-        logger.debug("7.查询用户当前的划转限制：{}", JSON.toJSONString(response));
-    }
-
-
-    @Test
-    public void getSwapCrossPositionLimitResponse() {
-        SwapCrossPositionLimitResponse response = huobiCrossAPIService.getSwapCrossPositionLimitResponse("btc-usdt","","","","");
-        logger.debug("8.用户持仓量限制的查询：{}", JSON.toJSONString(response));
-
-        response = huobiCrossAPIService.getSwapCrossPositionLimitResponse("","","","","");
-        logger.debug("8.用户持仓量限制的查询：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapCrossAvailableLevelRateResponse() {
         SwapCrossAvailableLevelRateResponse response = huobiCrossAPIService.getSwapCrossAvailableLevelRate("","","","","");
-        logger.debug("9.查询用户可用杠杆倍数：{}", JSON.toJSONString(response));
+        logger.debug("8.查询用户可用杠杆倍数：{}", JSON.toJSONString(response));
     }
 
     @Test
-    public void getSwapCrossUserSettlementRecords() {
-        SwapCrossUserSettlementRecordsRequest request = SwapCrossUserSettlementRecordsRequest.builder()
-                .marginAccount("usdt")
-                //.startTime(1l)
-                //.endTime(1l)
-                //.pageSize(0)
-                //.pageSize(0)
-                .build();
-        SwapCrossUserSettlementRecordsResponse response = huobiCrossAPIService.getSwapCrossUserSettlementRecords(request);
-        logger.debug("10.查询用户结算记录：{}", JSON.toJSONString(response));
+    public void getSwapCrossTransferLimitResponse() {
+        SwapCrossTransferLimitResponse response = huobiCrossAPIService.getSwapCrossTransferLimitResponse("usdt");
+        logger.debug("9.查询用户当前的划转限制：{}", JSON.toJSONString(response));
+        response = huobiCrossAPIService.getSwapCrossTransferLimitResponse("");
+        logger.debug("9.查询用户当前的划转限制：{}", JSON.toJSONString(response));
     }
 
     @Test
-    public void getSwapCrossSubCrossAccountInfoList() {
-        SwapSubAccountInfoListResponse response = huobiCrossAPIService.getSwapCrossSubAccountInfoList("usdt", 1, 20,"");
-        logger.debug("11.批量获取子账户资产信息：{}", JSON.toJSONString(response));
+    public void getSwapCrossPositionLimitResponse() {
+        SwapCrossPositionLimitResponse response = huobiCrossAPIService.getSwapCrossPositionLimitResponse("btc-usdt","","","","");
+        logger.debug("10.用户持仓量限制的查询：{}", JSON.toJSONString(response));
+
+        response = huobiCrossAPIService.getSwapCrossPositionLimitResponse("","","","","");
+        logger.debug("10.用户持仓量限制的查询：{}", JSON.toJSONString(response));
     }
 
     @Test
@@ -114,6 +99,6 @@ public class CrossAccountAPITest implements BaseTest {
                 .tradePartition("")
                 .build();
         SwapLeverPositionLimitResponse response = huobiCrossAPIService.getSwapCrossLeverPositionLimit(request);
-        logger.debug("12.查询用户所有杠杆持仓量限制：{}", JSON.toJSONString(response));
+        logger.debug("11.查询用户所有杠杆持仓量限制：{}", JSON.toJSONString(response));
     }
 }

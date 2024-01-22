@@ -13,73 +13,25 @@ import com.huobi.api.response.usdt.market.SwapQueryElementsResponse;
 import com.huobi.api.response.usdt.market.SwapSettlementRecordsResponse;
 
 public interface MarketAPIService {
-    SwapContractInfoResponse getSwapContractInfo(String contractCode);
+    SwapMarketDepthResponse getSwapMarketDepth(String contractCode, String type);// 1.获取行情深度数据
 
-    SwapIndexResponse getSwapIndex(String contractCode);
+    MarketBboResponse getMarketBbo(String contractCode);// 2.获取市场最优挂单
 
-    SwapPriceLimitResponse getSwapPriceLimit(String contractCode);
+    SwapMarketHistoryKlineResponse getSwapMarketHistoryKline(SwapMarketHistoryKlineRequest request);// 3.获取K线数据
 
-    SwapOpenInterestResponse getSwapOpenInterest(String contractCode);
+    SwapMarkPriceKlineResponse getSwapMarkPriceKline(String contractCode,String period,Integer size);// 4.获取标记价格的 K 线数据
 
-    SwapMarketDepthResponse getSwapMarketDepth(String contractCode, String type);
+    SwapMarketDetailMergedResponse getSwapMarketDetailMerged(String contractCode);// 5.获取聚合行情
 
-    SwapMarketHistoryKlineResponse getSwapMarketHistoryKline(SwapMarketHistoryKlineRequest request);
+    BatchMergedV2Response getBatchMergedV2(String contractCode);// 6.批量获取聚合行情（V2）
 
-    SwapMarketDetailMergedResponse getSwapMarketDetailMerged(String contractCode);
+    SwapMarketTradeResponse getSwapMarketTrade(String contractCode);// 7.获取市场最近成交记录
 
-    SwapMarketTradeResponse getSwapMarketTrade(String contractCode);
+    SwapMarketHistoryTradeResponse getSwapMarketHistoryTrade(String contractCode,Integer size);// 8.批量获取最近的交易记录
 
-    SwapMarketHistoryTradeResponse getSwapMarketHistoryTrade(String contractCode,Integer size);
+    LinearSwapPremiumIndexKlineResponse getLinearSwapPremiumIndexKline(String contractCode,String period,Integer size);// 9.获取溢价指数K线数据
 
-    SwapRiskInfoResponse getSwapRiskInfo(String contractCode);
+    LinearSwapEstimatedRateKlineResponse getLinearSwapEstimatedRateKline(String contractCode,String period,Integer size);// 10.获取预测资金费率的K线数据
 
-    SwapInsuranceFundResponse getSwapInsuranceFund(String contractCode,Integer pageIndex,Integer pageSize);
-
-    SwapAdjustfactorResponse getSwapAdjustfactor(String contractCode);
-
-    SwapHisOpenInterestResponse getSwapHisOpenInterest(String contractCode,String period,Integer size,Integer amountType);
-
-    SwapEliteAccountRatioResponse getSwapEliteAccountRatio(String contractCode,String period);
-
-    SwapElitePositionRatioResponse getSwapElitePositionRatio(String contractCode, String period);
-
-    SwapApiStateResponse getSwapApiState(String contractCode);
-
-    SwapFundingRateResponse getSwapFundingRate(String contractCode);
-
-    SwapHistoricalFundingRateResponse getSwapHistoricalFundingRate(String contractCode,Integer pageIndex,Integer pageSize);
-
-    SwapLiquidationOrdersResponse getSwapLiquidationOrders(SwapLiquidationOrdersRequest request);
-
-    LinearSwapPremiumIndexKlineResponse getLinearSwapPremiumIndexKline(String contractCode,String period,Integer size);
-
-    LinearSwapEstimatedRateKlineResponse getLinearSwapEstimatedRateKline(String contractCode,String period,Integer size);
-
-    LinearSwapBasisResponse getLinearSwapBasis(LinearSwapBasisRequest request);
-
-    SwapEstimatedSettlementPriceResponse getSwapEstimatedSettlementPrice(String contractCode);
-
-    BatchMergedResponse getBatchMerged(String contractCode);
-
-    SwapMarkPriceKlineResponse getSwapMarkPriceKline(String contractCode,String period,Integer size);
-
-    SwapLadderMarginResponse getSwapLadderMargin(String contractCode);
-
-    SwapBatchFundingRateResponse getSwapBatchFundingRate(String contractCode);
-
-    MarketBboResponse getMarketBbo(String contractCode);
-
-    SwapLiquidationOrdersV3Response getSwapLiquidationOrdersV3(SwapLiquidationOrdersV3Request request);
-
-    SwapSettlementRecordsResponse getSwapSettlementRecords(SwapSettlementRecordsRequest request);
-
-    SwapQueryElementsResponse getSwapQueryElements(String contractCode);
-
-    BatchMergedV2Response getBatchMergedV2(String contractCode);
-
-    TimestampReponse getTimestamp();
-
-    HeartBeatResponse getHeartBeat();
-
-    SummaryResponse getSummary();
+    LinearSwapBasisResponse getLinearSwapBasis(LinearSwapBasisRequest request);// 11.获取基差数据
 }

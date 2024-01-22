@@ -34,6 +34,8 @@ public class BatchMergedResponse {
         private String vol;
         @SerializedName("trade_turnover")
         private String tradeTurnover;
+        @SerializedName("number_of")
+        private String numberOf;
         private Long ts;
         @SerializedName("trade_partition")
         private String tradePartition;

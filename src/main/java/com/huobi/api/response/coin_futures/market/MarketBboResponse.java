@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Builder
@@ -20,8 +21,8 @@ public class MarketBboResponse {
     public static class TicksBean{
         private String symbol;
         private Long mrid;
-        private List ask;
-        private List bid;
+        private BigDecimal[] ask;
+        private BigDecimal[] bid;
         private Long ts;
     }
 }

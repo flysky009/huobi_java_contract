@@ -8,63 +8,23 @@ import com.huobi.api.response.usdt.market.BatchMergedV2Response;
 
 
 public interface MarketAPIService {
-    ContractContractInfoResponse getContractContractInfo(String symbol, String contractType, String contractCode);
+    MarketDepthResponse getMarketDepth(String symbol, String contractType);// 1.获取行情深度数据
 
-    ContractIndexResponse getContractIndex(String symbol);
+    MarketBboResponse getMarketBbo(String symbol);// 2.获取市场最优挂单
 
-    ContractPriceLimitResponse getContractPriceLimit(String symbol, String contractType, String contractCode);
+    MarketHistoryKlineResponse getMarketHistoryKline(String symbol, String period, Integer size, Long from, Long to);// 3.获取K线数据
 
-    ContractOpenInterestResponse getContractOpenInterest(String symbol, String contractType, String contractCode);
+    MarkPriceKlineResponse getMarkPriceKline(String symbol,String period,Integer size);// 4.获取标记价格的K线数据
 
-    ContractDeliveryPriceResponse getContractDeliveryPrice(String symbol);
+    MarketDetailMergedResponse getMarketDetailMerged(String symbol);// 5.获取聚合行情
 
+    BatchMergedV2Response getBatchMergedV2(String symbol);// 6.批量获取聚合行情（V2）
 
-    MarketDepthResponse getMarketDepth(String symbol, String contractType);
+    MarketTradeResponse getMarketTrade(String symbol);// 7.获取市场最近成交记录
 
-    MarketHistoryKlineResponse getMarketHistoryKline(String symbol, String period, Integer size, Long from, Long to);
+    MarketHistoryTradeResponse getMarketHistoryTrade(String symbol, Integer size);// 8.批量获取最近的交易记录
 
-    MarketDetailMergedResponse getMarketDetailMerged(String symbol);
+    MarketHistoryIndexResponse getMarketHistoryIndex(String symbol,String period,Integer size);// 9.获取指数K线数据
 
-    MarketTradeResponse getMarketTrade(String symbol);
-
-    MarketHistoryTradeResponse getMarketHistoryTrade(String symbol, Integer size);
-
-
-    ContractRiskInfoResponse getContractRiskInfo(String symbol);
-
-    ContractInsuranceFundResponse getContractInsuranceFund(String symbol);
-
-    ContractAdjustfactorResponse getContractAdjustfactor(String symbol);
-
-    ContractHisOpenInterestResponse getContractHisOpenInterest(String symbol, String contractType, TimePeriodTypeEnum timePeriodType, Integer size, Integer amountType);
-
-    ContractEliteAccountRatioResponse getContractEliteAccountRatio(String symbol, String period);
-
-    ContractElitePositionRatioResponse getContractElitePositionRatio(String symbol, String period);
-
-    ContractLiquidationOrdersResponse getContractLiquidationOrders(String symbol, Integer tradeType, Integer createDate, Integer pageIndex, Integer pageSize);
-
-    ContractApiStateResponse getContractApiState(String symbol);//查询系统状态
-
-    MarketHistoryIndexResponse getMarketHistoryIndex(String symbol,String period,Integer size);
-
-    MarketHistoryBasisResponse getMarketHistoryBasis(String symbol,String period,String basisPriceType,Integer size);
-
-    ContractSettlementRecordsResponse getContractSettlementRecords(ContractSettlementRecordsRequest request);
-
-    ContractEstimatedSettlementPriceResponse getContractEstimatedSettlementPriceResponse(String symbol);
-
-    MarketBatchMergedResponse getMarketBatchMerged(String symbol);
-
-    ContractLadderMarginResponse getContractLadderMargin(String symbol);
-
-    MarkPriceKlineResponse getMarkPriceKline(String symbol,String period,Integer size);
-
-    MarketBboResponse getMarketBbo(String symbol);
-
-    ContractLiquidationOrdersV3Response getContractLiquidationOrdersV3(ContractLiquidationOrdersV3Request request);
-
-    ContractQueryElementsResponse getContractQueryElements(String contractCode);
-
-    BatchMergedV2Response getBatchMergedV2(String symbol);
+    MarketHistoryBasisResponse getMarketHistoryBasis(String symbol,String period,String basisPriceType,Integer size);// 10.获取基差数据
 }

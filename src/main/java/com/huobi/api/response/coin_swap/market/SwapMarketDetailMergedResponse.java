@@ -55,7 +55,7 @@ public class SwapMarketDetailMergedResponse {
         private String open;
         private Long ts;
         private String vol;
-        private List<BigDecimal> ask;
-        private List<BigDecimal> bid;
+        private BigDecimal[] ask;
+        private BigDecimal[] bid;
     }
 }

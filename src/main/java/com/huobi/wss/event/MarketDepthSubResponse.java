@@ -38,8 +38,8 @@ public class MarketDepthSubResponse {
         private Long ts;
         private Long version;
         private String ch;
-        private List<List<BigDecimal>> bids;
-        private List<List<BigDecimal>> asks;
+        private List<BigDecimal[]> bids;
+        private List<BigDecimal[]> asks;
         private String event;
     }
 }

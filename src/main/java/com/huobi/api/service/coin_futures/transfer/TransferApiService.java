@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 public interface TransferApiService {
 
-    FuturesTransferResponse transfer(String currency, BigDecimal amount, String type);
+    FuturesTransferResponse transfer(String currency, BigDecimal amount, String type);// 1.现货-合约账户间进行资金的划转
 
-    AccountTransferResponse accountTransfer(AccountTransferRequest request);
+    AccountTransferResponse accountTransfer(AccountTransferRequest request);// 2.现货-合约账户进行资金的划转
 }

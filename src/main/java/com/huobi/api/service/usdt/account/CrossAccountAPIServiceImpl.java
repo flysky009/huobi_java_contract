@@ -275,36 +275,6 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
     }
 
     @Override
-    public SwapCrossUserSettlementRecordsResponse getSwapCrossUserSettlementRecords(SwapCrossUserSettlementRecordsRequest request) {
-        String body;
-        Map<String, Object> params = new HashMap<>();
-        try {
-            params.put("margin_account", request.getMarginAccount().toUpperCase());
-            if (request.getStartTime() != null) {
-                params.put("start_time", request.getStartTime());
-            }
-            if (request.getEndTime() != null) {
-                params.put("end_time", request.getEndTime());
-            }
-            if (request.getPageIndex() != null) {
-                params.put("page_index", request.getPageIndex());
-            }
-            if (request.getPageSize() != null) {
-                params.put("page_size", request.getPageSize());
-            }
-            body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapCrossAPIConstants.SWAP_CROSS_USER_SETTLEMENT_RECORDS, params);
-            logger.debug("body:{}", body);
-            SwapCrossUserSettlementRecordsResponse response = JSON.parseObject(body, SwapCrossUserSettlementRecordsResponse.class);
-            if ("ok".equalsIgnoreCase(response.getStatus())) {
-                return response;
-            }
-        } catch (Exception e) {
-            throw new ApiException(e);
-        }
-        throw new ApiException(body);
-    }
-
-    @Override
     public SwapSubAccountInfoListResponse getSwapCrossSubAccountInfoList(String marginAccount, Integer pageIndex, Integer pagesize,String tradePartition) {
         String body;
         Map<String, Object> params = new HashMap<>();

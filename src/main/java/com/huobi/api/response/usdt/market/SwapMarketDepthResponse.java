@@ -3,6 +3,7 @@ package com.huobi.api.response.usdt.market;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -39,8 +40,8 @@ public class SwapMarketDepthResponse {
         private Long mrid;
         private Long ts;
         private Integer version;
-        private List asks;
-        private List bids;
+        private List<BigDecimal[]> asks;
+        private List<BigDecimal[]> bids;
 
     }
 }

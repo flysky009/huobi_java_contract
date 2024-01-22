@@ -137,36 +137,6 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public ContractFinancialRecordResponse getContractFinancialRecord(ContractFinancialRecordRequest request) {
-        String body;
-        try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("symbol", request.getSymbol().toUpperCase());
-            if (StringUtils.isNotEmpty(request.getType())) {
-                params.put("type", request.getType());
-            }
-            if (request.getCreateDate() != null) {
-                params.put("create_date", request.getCreateDate());
-            }
-            if (request.getPageIndex() != null) {
-                params.put("page_index", request.getPageIndex());
-            }
-            if (request.getPageSize() != null) {
-                params.put("page_size", request.getPageSize());
-            }
-            body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiFutureAPIConstants.CONTRACT_FINANCIAL_RECORD, params);
-            ContractFinancialRecordResponse response = JSON.parseObject(body, ContractFinancialRecordResponse.class);
-            if ("ok".equalsIgnoreCase(response.getStatus())) {
-                return response;
-            }
-
-        } catch (Exception e) {
-            throw new ApiException(e);
-        }
-        throw new ApiException(body);
-    }
-
-    @Override
     public ContractOrderLimitResponse getContractOrderLimitResponse(String symbol, String orderPriceType) {
         String body;
         try {
@@ -263,41 +233,6 @@ public class AccountAPIServiceImpl implements AccountAPIService {
                 return response;
             }
 
-        } catch (Exception e) {
-            throw new ApiException(e);
-        }
-        throw new ApiException(body);
-    }
-
-    @Override
-    public ContractFinancialRecordExactResponse gatContractFinancialRecordExact(ContractFinancialRecordExactRequest request) {
-        String body;
-        try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("symbol", request.getSymbol().toUpperCase());
-            if (request.getType() != null) {
-                params.put("type", request.getType());
-            }
-            if (request.getStartTime() != null) {
-                params.put("start_time", request.getStartTime());
-            }
-            if (request.getEndTime() != null) {
-                params.put("end_time", request.getEndTime());
-            }
-            if (request.getFromId() != null) {
-                params.put("from_id", request.getFromId());
-            }
-            if (request.getSize() != null) {
-                params.put("size", request.getSize());
-            }
-            if (request.getDirect() != null) {
-                params.put("direct", request.getDirect());
-            }
-            body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiFutureAPIConstants.CONTRACT_FINANCIAL_RECORD_EXACT, params);
-            ContractFinancialRecordExactResponse response = JSON.parseObject(body, ContractFinancialRecordExactResponse.class);
-            if ("ok".equalsIgnoreCase(response.getStatus())) {
-                return response;
-            }
         } catch (Exception e) {
             throw new ApiException(e);
         }

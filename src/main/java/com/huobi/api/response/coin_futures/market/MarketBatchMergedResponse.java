@@ -22,8 +22,8 @@ public class MarketBatchMergedResponse {
         private String symbol;
         private Long id;
         private String amount;
-        private List ask;
-        private List bid;
+        private BigDecimal[] ask;
+        private BigDecimal[] bid;
         private String open;
         private String close;
         private BigDecimal count;

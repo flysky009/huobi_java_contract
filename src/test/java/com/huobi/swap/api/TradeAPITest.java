@@ -30,6 +30,15 @@ public class TradeAPITest implements BaseTest {
     TradeAPIServiceImpl huobiAPIService = new TradeAPIServiceImpl("", "");
 
     @Test
+    public void swapCancelAfterResponse(){
+        SwapCancelAfterRequest request = SwapCancelAfterRequest.builder()
+                .onOff(1)
+                .build();
+        SwapCancelAfterResponse response = huobiAPIService.swapCancelAfterResponse(request);
+        logger.debug("1.自动撤单：{}", JSON.toJSONString(response));
+    }
+
+    @Test
     public void swapOrderRequest() {
         SwapOrderRequest request = SwapOrderRequest.builder()
                 .contractCode("xrp-usd")
@@ -47,32 +56,31 @@ public class TradeAPITest implements BaseTest {
                 .slOrderPriceType("limit")
                 .build();
         SwapOrderResponse response = huobiAPIService.swapOrderRequest(request);
-        logger.debug("1合约下单：{}", JSON.toJSONString(response));
+        logger.debug("2.合约下单：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void swapBatchorderRequest() {
         List<SwapOrderRequest> list = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
-        SwapOrderRequest request = SwapOrderRequest.builder()
-                .contractCode("THETA-USD")
-                .volume(1l)
-                .price(BigDecimal.valueOf(0.677))
-                .direction(DirectionEnum.SELL)
-                .offset(OffsetEnum.OPEN)
-                .leverRate(20)
-                .orderPriceType("limit")
-                .build();
-        list.add(request);
-         }
+            SwapOrderRequest request = SwapOrderRequest.builder()
+                    .contractCode("THETA-USD")
+                    .volume(1l)
+                    .price(BigDecimal.valueOf(0.677))
+                    .direction(DirectionEnum.SELL)
+                    .offset(OffsetEnum.OPEN)
+                    .leverRate(20)
+                    .orderPriceType("limit")
+                    .build();
+            list.add(request);
+        }
         SwapBatchorderRequest request = SwapBatchorderRequest.builder()
                 .list(list)
                 .build();
         SwapBatchorderResponse response =
                 huobiAPIService.swapBatchorderRequest(request);
-        logger.debug("2.合约批量下单：{}", JSON.toJSONString(response));
+        logger.debug("3.合约批量下单：{}", JSON.toJSONString(response));
     }
-
 
     @Test
     public void swapCancelRequest() {
@@ -83,9 +91,8 @@ public class TradeAPITest implements BaseTest {
                 .build();
         SwapCancelResponse response =
                 huobiAPIService.swapCancelRequest(request);
-        logger.debug("3.撤销订单：{}", JSON.toJSONString(response));
+        logger.debug("4.撤销订单：{}", JSON.toJSONString(response));
     }
-
 
     @Test
     public void swapCancelallRequest() {
@@ -94,9 +101,14 @@ public class TradeAPITest implements BaseTest {
                 .build();
         SwapCancelallResponse response =
                 huobiAPIService.swapCancelallRequest(request);
-        logger.debug("4全部撤单：{}", JSON.toJSONString(response));
+        logger.debug("5.全部撤单：{}", JSON.toJSONString(response));
     }
 
+    @Test
+    public void swapSwitchLeverRateRequest(){
+        SwapSwitchLeverRateResponse response=huobiAPIService.swapSwitchLeverRateResponse("ADA-USD",30);
+        logger.debug("6.切换杠杆：{}", JSON.toJSONString(response));
+    }
 
     @Test
     public void swapOrderInfoRequest() {
@@ -107,9 +119,8 @@ public class TradeAPITest implements BaseTest {
                 .build();
         SwapOrderInfoResponse response =
                 huobiAPIService.swapOrderInfoRequest(request);
-        logger.debug("5获取合约订单信息：{}", JSON.toJSONString(response));
+        logger.debug("7.获取合约订单信息：{}", JSON.toJSONString(response));
     }
-
 
     @Test
     public void swapOrderDetailRequest() {
@@ -123,9 +134,8 @@ public class TradeAPITest implements BaseTest {
                 .build();
         SwapOrderDetailResponse response =
                 huobiAPIService.swapOrderDetailRequest(request);
-        logger.debug("6.获取订单明细信息：{}", JSON.toJSONString(response));
+        logger.debug("8.获取订单明细信息：{}", JSON.toJSONString(response));
     }
-
 
     @Test
     public void swapOpenordersRequest() {
@@ -136,297 +146,7 @@ public class TradeAPITest implements BaseTest {
                 .build();
         SwapOpenordersResponse response =
                 huobiAPIService.swapOpenordersRequest(request);
-        logger.debug("7.获取合约当前未成交委托：{}", JSON.toJSONString(response));
-    }
-
-
-    @Test
-    public void swapHisordersRequest() {
-        SwapHisordersRequest request = SwapHisordersRequest.builder()
-                .contractCode("theta-usd")
-                .tradeType(0)
-                .type(1)
-                .status(0)
-                .createDate(10)
-                .pageIndex(1)
-                .pageSize(5)
-                .sortBy("update_time")
-                .build();
-        SwapHisordersResponse response =
-                huobiAPIService.swapHisordersRequest(request);
-        logger.debug("8.获取合约历史委托：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapMatchresultsRequest() {
-        SwapMatchresultsRequest request = SwapMatchresultsRequest.builder()
-                .contractCode("ada-usd")
-                .tradeType(0)
-                .createDate(90)
-                .pageIndex(1)
-                .pageSize(5)
-                .build();
-        SwapMatchresultsResponse response =
-                huobiAPIService.swapMatchresultsRequest(request);
-        logger.debug("9.获取历史成交记录：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapLightningClosePositionRequest() {
-        SwapLightningClosePositionRequest request = SwapLightningClosePositionRequest.builder()
-                .contractCode("ada-usd")
-                .direction("sell")
-                .volume(1)
-                .build();
-        SwapLightningClosePositionResponse response =
-                huobiAPIService.swapLightningClosePositionRequest(request);
-        logger.debug("10.闪电平仓下单：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTriggerOrderRequest() {
-        SwapTriggerOrderRequest request = SwapTriggerOrderRequest.builder()
-                .contractCode("theta-usd")
-                .triggerType("le")
-                .triggerPrice(BigDecimal.valueOf(0.677))
-                .orderPrice(BigDecimal.valueOf(0.677))
-                .orderPriceType("limit")
-                .volume(1l)
-                .direction(DirectionEnum.BUY)
-                .offset(OffsetEnum.OPEN)
-                .leverRate(20)
-                .build();
-        SwapTriggerOrderResponse response = huobiAPIService.swapTriggerOrderResponse(request);
-        logger.debug("11.计划委托下单：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTriggerCancelRequest() {
-        SwapTriggerCancelRequest request = SwapTriggerCancelRequest.builder()
-                .orderId("4699")
-                .contractCode("theta-usd")
-                .build();
-        SwapTriggerCancelResponse response = huobiAPIService.swapTriggerCancelResponse(request);
-        logger.debug("12.计划委托撤单：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTriggerCancelallRequest() {
-        SwapTriggerCancelallRequest request = SwapTriggerCancelallRequest.builder()
-                .contractCode("theta-usd")
-                .build();
-        SwapTriggerCancelallResponse response = huobiAPIService.swapTriggerCancelallResponse(request);
-        logger.debug("13.计划委托全部撤单：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTriggerOpenordersRequest() {
-        SwapTriggerOpenordersRequest request = SwapTriggerOpenordersRequest.builder()
-                .contractCode("btc-usd")
-                .pageIndex(1)
-                .pageSize(10)
-                .build();
-        SwapTriggerOpenordersResponse response = huobiAPIService.swapTriggerOpenordersResponse(request);
-        logger.debug("14.获取计划委托当前委托：{}", JSON.toJSONString(response));
-
-    }
-
-    @Test
-    public void swapTriggerHisordersRequest() {
-        SwapTriggerHisordersRequest request = SwapTriggerHisordersRequest.builder()
-                .tradeType(0)
-                .status("0")
-                .createDate(10)
-                .contractCode("btc-usd")
-                .pageIndex(1)
-                .pageSize(1)
-                .sortBy("update_time")
-                .build();
-        SwapTriggerHisordersResponse response = huobiAPIService.swapTriggerHisordersResponse(request);
-        logger.debug("15.获取计划委托历史委托：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapSwitchLeverRateRequest(){
-        SwapSwitchLeverRateResponse response=huobiAPIService.swapSwitchLeverRateResponse("ADA-USD",30);
-        logger.debug("16.切换杠杆：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapHisordersExact(){
-        SwapHisordersExectRequest request=SwapHisordersExectRequest.builder()
-                .contractCode("theta-usd")
-                .tradeType(0)
-                .type(1)
-                .status("0")
-                .orderPriceType("post_only")
-                //.startTime()
-                //.endTime()
-                //.fromId()
-                //.size()
-                //.direct()
-                .build();
-        SwapHisordersExactResponse response=huobiAPIService.swapHisordersExactResponse(request);
-        logger.debug("17.组合查询合约历史委托：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapMatchresultsExact(){
-        SwapMatchresultsExactRequest request=SwapMatchresultsExactRequest.builder()
-                .contractCode("theta-usd")
-                .tradeType(0)
-                //.startTime()
-                //.endTime()
-                //.fromId()
-                //.size()
-                //.direct()
-                .build();
-        SwapMatchresultsExactResponse response=huobiAPIService.swapMatchresultsExactResponse(request);
-        logger.debug("18.组合查询用户历史成交记录：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTpslOrderRequest(){
-        SwapTpslOrderRequest request= SwapTpslOrderRequest.builder()
-                .contractCode("xrp-usd")
-                .direction("sell")
-                .volume(BigDecimal.valueOf(1))
-                .tpTriggerPrice(BigDecimal.valueOf(0.5))
-                .tpOrderPrice(BigDecimal.valueOf(0.5))
-                .tpOrderPriceType("limit")
-                .slTriggerPrice(BigDecimal.valueOf(0.2))
-                .slOrderPrice(BigDecimal.valueOf(0.2))
-                .slOrderPriceType("limit")
-                .build();
-        SwapTpslOrderResponse response=huobiAPIService.swapTpslOrderResponse(request);
-        logger.debug("19.对仓位设置止盈止损订单：{}", JSON.toJSONString(response));
-    }
-
-
-    @Test
-    public void swapTpslCancelRequest(){
-        SwapTpslCancelRequest request= SwapTpslCancelRequest.builder()
-                .contractCode("xrp-usd")
-                .orderId("798933220753608704,798593423673294823")
-                .build();
-        SwapTpslCancelResponse response=huobiAPIService.swapTpslCancelResponse(request);
-        logger.debug("20.止盈止损订单撤单：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTpslCancelallRequest(){
-        SwapTpslCancelallRequest request= SwapTpslCancelallRequest.builder()
-                .contractCode("xrp-usd")
-                .build();
-        SwapTpslCancelallResponse response=huobiAPIService.swapTpslCancelallResponse(request);
-        logger.debug("21.止盈止损订单全部撤单：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTpslOpenorderRequest(){
-        SwapTpslOpenordersRequest request= SwapTpslOpenordersRequest.builder()
-                .contractCode("xrp-usd")
-                .pageIndex(1)
-                .pageSize(20)
-                .build();
-        SwapTpslOpenordersResponse response=huobiAPIService.swapTpslOpenordersResponse(request);
-        logger.debug("22.查询止盈止损订单当前委托：{}", JSON.toJSONString(response));
-
-    }
-
-    @Test
-    public void swapTpslHisordersRequest(){
-        SwapTpslHisordersRequset requset= SwapTpslHisordersRequset.builder()
-                .contractCode("xrp-usd")
-                .status("0")
-                .createDate(10l)
-                .pageIndex(1)
-                .pageSize(20)
-                .sortBy("update_time")
-                .build();
-        SwapTpslHisordersResponse response=huobiAPIService.swapTpslHisordersResponse(requset);
-        logger.debug("23.查询止盈止损订单历史委托：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapRelationTpslOrder(){
-        SwapRelationTpslOrderRequest request= SwapRelationTpslOrderRequest.builder()
-                .contractCode("xrp-usd")
-                .orderId(798931252656209920l)
-                .build();
-        SwapRelationTpslOrderResponse response=huobiAPIService.swapRelationTpslOrderResponse(request);
-        logger.debug("24.查询开仓单关联的止盈止损订单详情：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTrackOrders(){
-        SwapTrackOrderRequest request=SwapTrackOrderRequest.builder()
-                .contractCode("")
-                .direction("")
-                .offset("")
-                .leverRate(1)
-                .volume(BigDecimal.valueOf(1))
-                .callbackRate(BigDecimal.valueOf(0.1))
-                .orderPriceType("")
-                .build();
-        SwapTrackOrderResponse response=huobiAPIService.swapTrackOrderResponse(request);
-        logger.debug("25.跟踪委托订单下单：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTrackCancel(){
-        SwapTrackCancelRequest request= SwapTrackCancelRequest.builder()
-                .orderId("")
-                .contractCode("")
-                .build();
-        SwapTrackCancelResponse response=huobiAPIService.swapTrackCancelResponse(request);
-        logger.debug("26.跟踪委托订单撤单：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTrackCancelall(){
-        SwapTrackCancelallRequest request= SwapTrackCancelallRequest.builder()
-                .contractCode("")
-                .direction("")
-                .offset("")
-                .build();
-        SwapTrackCancelallResponse response=huobiAPIService.swapTrackCancelallResponse(request);
-        logger.debug("27.跟踪委托订单全部撤单：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTrackOpenorders(){
-        SwapTrackOpenordersRequest request=SwapTrackOpenordersRequest.builder()
-                .contractCode("")
-                .tradeType(0)
-                .pageIndex(1)
-                .pageSize(2)
-                .build();
-        SwapTrackOpenordersResponse response=huobiAPIService.swapTrackOpenordersResponse(request);
-        logger.debug("28.跟踪委托订单当前委托：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapTrackHisorders(){
-        SwapTrackHisordersRequest request= SwapTrackHisordersRequest.builder()
-                .contractCode("")
-                .tradeType(0)
-                .createDate(10l)
-                .pageIndex(1)
-                .pageSize(1)
-                .sortBy("")
-                .build();
-        SwapTrackHisordersResponse response=huobiAPIService.swapTrackHisordersResponse(request);
-        logger.debug("29.跟踪委托订单当前委托：{}", JSON.toJSONString(response));
-    }
-
-    @Test
-    public void swapCancelAfterResponse(){
-        SwapCancelAfterRequest request = SwapCancelAfterRequest.builder()
-                .onOff(1)
-                .build();
-        SwapCancelAfterResponse response = huobiAPIService.swapCancelAfterResponse(request);
-        logger.debug("30.自动撤单：{}", JSON.toJSONString(response));
+        logger.debug("9.获取合约当前未成交委托：{}", JSON.toJSONString(response));
     }
 
     @Test
@@ -438,7 +158,7 @@ public class TradeAPITest implements BaseTest {
                 .status("0")
                 .build();
         SwapHisordersV3Response response = huobiAPIService.swapHisordersV3Response(request);
-        logger.debug("31.获取合约历史委托(新)：{}", JSON.toJSONString(response));
+        logger.debug("10.获取合约历史委托(新)：{}", JSON.toJSONString(response));
     }
 
     @Test
@@ -450,7 +170,7 @@ public class TradeAPITest implements BaseTest {
                 .status("0")
                 .build();
         SwapHisordersExactV3Response response = huobiAPIService.swapHisordersExactV3Response(request);
-        logger.debug("32.组合查询合约历史委托(新)：{}", JSON.toJSONString(response));
+        logger.debug("11.组合查询合约历史委托(新)：{}", JSON.toJSONString(response));
     }
 
     @Test
@@ -460,7 +180,7 @@ public class TradeAPITest implements BaseTest {
                 .tradeType(0)
                 .build();
         SwapMatchResultsV3Response response = huobiAPIService.swapMatchResultsV3Response(request);
-        logger.debug("33.获取历史成交记录（新）：{}", JSON.toJSONString(response));
+        logger.debug("12.获取历史成交记录（新）：{}", JSON.toJSONString(response));
     }
 
     @Test
@@ -470,6 +190,18 @@ public class TradeAPITest implements BaseTest {
                 .tradeType(0)
                 .build();
         SwapMatchResultsExactV3Response response = huobiAPIService.swapMatchResultsExactV3Response(request);
-        logger.debug("34.组合查询用户历史成交记录（新）：{}", JSON.toJSONString(response));
+        logger.debug("13.组合查询用户历史成交记录（新）：{}", JSON.toJSONString(response));
+    }
+
+    @Test
+    public void swapLightningClosePositionRequest() {
+        SwapLightningClosePositionRequest request = SwapLightningClosePositionRequest.builder()
+                .contractCode("ada-usd")
+                .direction("sell")
+                .volume(1)
+                .build();
+        SwapLightningClosePositionResponse response =
+                huobiAPIService.swapLightningClosePositionRequest(request);
+        logger.debug("14.闪电平仓下单：{}", JSON.toJSONString(response));
     }
 }

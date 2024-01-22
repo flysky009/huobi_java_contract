@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Builder
@@ -22,8 +23,8 @@ public class MarketBboResponse {
         @SerializedName("contract_code")
         private String contract_code;
         private Long mrid;
-        private List ask;
-        private List bid;
+        private BigDecimal[] ask;
+        private BigDecimal[] bid;
         private Long ts;
     }
 }

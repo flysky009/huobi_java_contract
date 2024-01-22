@@ -3,7 +3,7 @@ package com.huobi.usdt.api;
 import com.alibaba.fastjson.JSON;
 import com.huobi.api.request.usdt.transfer.UsdtSwapTransferRequest;
 import com.huobi.api.response.usdt.transfer.UsdtSwapTransferResponse;
-import com.huobi.api.service.usdt.transfer.TransferApiServiceImpl;
+import com.huobi.api.service.usdt.transfer.TransferAPIServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 public class TransferAPITest implements BaseTest {
 
 
-    TransferApiServiceImpl transferApiService = new TransferApiServiceImpl("", "");
+    TransferAPIServiceImpl huobiAPIService = new TransferAPIServiceImpl("", "");
 
     @Test
     public void transfer() {
@@ -37,7 +37,7 @@ public class TransferAPITest implements BaseTest {
                 .currency("usdt")
                 .amount(BigDecimal.valueOf(1))
                 .build();
-        UsdtSwapTransferResponse response = transferApiService.transfer(request);
+        UsdtSwapTransferResponse response = huobiAPIService.transfer(request);
         logger.debug("1.现货-USDT本位永续账户间进行资金的划转：{}", JSON.toJSONString(response));
 
 

@@ -5,77 +5,51 @@ package com.huobi.api.service.usdt.account;
 
 import com.huobi.api.request.usdt.account.*;
 import com.huobi.api.response.usdt.account.*;
-import com.huobi.api.response.usdt.market.BatchMergedResponse;
 
 import java.math.BigDecimal;
 
 public interface AccountAPIService {
+    SwapBalanceValuationResponse getSwapBalanceValuation(String ValuationAsset);// 1.获取账户总资产估值
 
+    SwapAccountInfoResponse getSwapAccountInfo(String contractCode, String tradePartition);// 2.获取用户账户信息
 
-    //2获取合约资产接口开始
-    SwapAccountInfoResponse getSwapAccountInfo(String contractCode, String tradePartition);//获取用户账户信息
+    SwapPositionInfoResponse getSwapPositionInfo(String contractCode, String tradePartition);// 3.获取用户持仓信息
 
-    SwapPositionInfoResponse getSwapPositionInfo(String contractCode, String tradePartition);//获取用户持仓信息
+    SwapAccountPositionInfoResponse getSwapAccountPositionInfo(String contractCode, String tradePartition);// 4.查询用户账户和持仓信息
 
-    SwapAccountPositionInfoResponse getSwapAccountPositionInfo(String contractCode, String tradePartition);//查询用户账户和持仓信息
+    SwapSubAuthResponse getSwapSubAuth(String subUid, Integer subAuth);// 5.批量设置子账户交易权限
 
-    SwapSubAccountListResponse getSwapSubAccountList(String contractCode, String tradePartition, String direct, Long fromId);//查询母账户下所有子账户资产信息
+    SwapSubAuthListResponse getSwapSubAuthList(SwapSubAuthListRequest request);// 6.【通用】查询子账户交易权限
 
-    SwapSubAccountInfoResponse getSwapSubAccountInfo(String contractCode, Long subUid, String tradePartition);//查询单个子账户资产信息
+    SwapSubAccountListResponse getSwapSubAccountList(String contractCode, String tradePartition, String direct, Long fromId);// 7.查询母账户下所有子账户资产信息
 
-    SwapSubPositionInfoResponse getSwapSubPositionInfo(String contractCode, Long subUid,String tradePartition);//查询单个子账户持仓信息
+    SwapSubAccountInfoListResponse getSwapSubAccountInfoList(String contractCode, Integer pageIndex, Integer pageSize,String tradePartition);// 8.批量获取子账户资产信息
 
-    SwapFinancialRecordResponse getSwapFinancialRecord(SwapFinancialRecordRequest request);//查询用户财务记录
+    SwapSubAccountInfoResponse getSwapSubAccountInfo(String contractCode, Long subUid, String tradePartition);// 9.查询单个子账户资产信息
 
-    SwapOrderLimitResponse getSwapOrderLimitResponse(String contractCode, String orderPriceType,String pair,String contractType,String businessType,String tradePartition);//查询用户当前的下单量限制
+    SwapSubPositionInfoResponse getSwapSubPositionInfo(String contractCode, Long subUid,String tradePartition);// 10.查询单个子账户持仓信息
 
-    SwapFeeResponse getSwapFeeResponse(String contractCode,String pair,String contractType,String businessType,String tradePartition);//查询用户当前的手续费费率
+    SwapFinancialRecordV3Response getSwapFinancialRecordV3(SwapFinancialRecordV3Request request);// 11.查询用户财务记录
 
-    SwapTransferLimitResponse getSwapTransferLimitResponse(String contractCode,String tradePartition);//查询用户当前的划转限制
+    SwapFinancialRecordExactV3Response getSwapFinancialRecordExactV3(SwapFinancialRecordExactV3Request request);// 12.组合查询用户财务记录 (新)
 
-    SwapPositionLimitResponse getSwapPositionLimitResponse(String contractCode,String tradePartition);//用户持仓量限制的查询
+    SwapAvailableLevelRateResponse getSwapAvailableLevelRate(String contractCode,String tradePartition);// 13.查询用户可用杠杆倍数
 
-    SwapMasterSubTransferResponse getSwapMasterSubTransferResponse(SwapMasterSubTransferRequest request);//母子账户划转
+    SwapOrderLimitResponse getSwapOrderLimitResponse(String contractCode, String orderPriceType,String pair,String contractType,String businessType,String tradePartition);// 14.查询用户当前的下单量限制
 
-    SwapMasterSubTransferRecordResponse getSwapMasterSubTransferRecordResponse(SwapMasterSubTransferRecordRequest request);//获取母账户下的所有母子账户划转记录
+    SwapFeeResponse getSwapFeeResponse(String contractCode,String pair,String contractType,String businessType,String tradePartition);// 15.查询用户当前的手续费费率
 
-    SwapTransferInnerResponse getSwapTransferInner(String asset, String fromMarginAccount, String toMarginAccount, BigDecimal amount,Long clientOrderId);
+    SwapTransferLimitResponse getSwapTransferLimitResponse(String contractCode,String tradePartition);// 16.查询用户当前的划转限制
 
-    SwapApiTradingStatusResponse getSwapApiTradingStatusResponse();//获取用户API指标禁用信息
+    SwapPositionLimitResponse getSwapPositionLimitResponse(String contractCode,String tradePartition);// 17.用户持仓量限制的查询
 
-    SwapAvailableLevelRateResponse getSwapAvailableLevelRate(String contractCode,String tradePartition);//查询用户可用杠杆倍数
+    SwapLeverPositionLimitResponse getSwapLeverPositionLimit(String contractCode,String tradePartition,Integer leverRate);// 18.查询用户所有杠杆持仓量限制
 
-    SwapUserSettlementRecordsResponse getSwapUserSettlementRecords(SwapUserSettlementRecordsRequest request);
+    SwapMasterSubTransferResponse getSwapMasterSubTransferResponse(SwapMasterSubTransferRequest request);// 19.母子账户划转
 
-    SwapFinancialRecordExactResponse getSwapFinancialRecordExact(SwapFinancialRecordExactRequest request);
+    SwapMasterSubTransferRecordResponse getSwapMasterSubTransferRecordResponse(SwapMasterSubTransferRecordRequest request);// 20.获取母账户下的所有母子账户划转记录
 
-    SwapSubAuthResponse getSwapSubAuth(String subUid, Integer subAuth);
+    SwapTransferInnerResponse getSwapTransferInner(String asset, String fromMarginAccount, String toMarginAccount, BigDecimal amount,Long clientOrderId);// 21.同账号不同保证金账户的划转
 
-    SwapSubAccountInfoListResponse getSwapSubAccountInfoList(String contractCode, Integer pageIndex, Integer pageSize,String tradePartition);
-
-    SwapBalanceValuationResponse getSwapBalanceValuation(String ValuationAsset);
-
-    SwapLeverPositionLimitResponse getSwapLeverPositionLimit(String contractCode,String tradePartition,Integer leverRate);
-
-    SwapFinancialRecordV3Response getSwapFinancialRecordV3(SwapFinancialRecordV3Request request);//查询用户财务记录
-
-    SwapFinancialRecordExactV3Response getSwapFinancialRecordExactV3(SwapFinancialRecordExactV3Request request);
-
-    SwapUnifiedAccountTypeResponse getSwapUnifiedAccountType();
-
-    SwapSwitchAccountTypeResponse getSwapSwitchAccountType(Integer accountType);
-
-    SwapLiquidationOrdersV3Response getSwapLiquidationOrdersV3(SwapLiquidationOrdersV3Request request);
-
-    UnifiedAccountInfoResponse getUnifiedAccountInfo(String contractCode);
-
-    LinearSwapOverviewAccountInfoResponse getLinearSwapOverviewAccountInfo();
-
-    LinearSwapFeeSwitchResponse getLinearSwapFeeSwitch(Integer feeOption);
-
-    FixPositionMarginChangeResponse getFixPositionMarginChange(FixPositionMarginChangeRequest request);
-
-    FixPositionMarginChangeRecordResponse getFixPositionMarginChangeRecord(FixPositionMarginChangeRecordRequest request);
-
-    SwapSubAuthListResponse getSwapSubAuthList(SwapSubAuthListRequest request);
+    SwapApiTradingStatusResponse getSwapApiTradingStatusResponse();// 22.获取用户API指标禁用信息
 }

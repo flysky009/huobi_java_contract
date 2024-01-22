@@ -40,8 +40,8 @@ public class MarketDepthResponse {
         private Long mrid;
         private Long ts;
         private Integer version;
-        private List<List<BigDecimal>> asks;
-        private List<List<BigDecimal>> bids;
+        private List<BigDecimal[]> asks;
+        private List<BigDecimal[]> bids;
 
     }
 }

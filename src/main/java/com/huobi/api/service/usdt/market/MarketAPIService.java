@@ -6,66 +6,27 @@ import com.huobi.api.request.usdt.account.SwapMarketHistoryKlineRequest;
 import com.huobi.api.response.usdt.market.*;
 
 public interface MarketAPIService {
-    SwapContractInfoResponse getSwapContractInfo(String contractCode, String supportMarginMode, String pair, String contractType, String businessType, String tradePartition);
+    SwapMarketDepthResponse getSwapMarketDepth(String contractCode, String type);// 1.获取行情深度数据
 
-    SwapIndexResponse getSwapIndex(String contractCode, String tradePartition);
+    MarketBboResponse getMarketBbo(String contractCode,String businessType, String tradePartition);// 2.获取市场最优挂单
 
-    SwapPriceLimitResponse getSwapPriceLimit(String contractCode, String pair, String contractType, String businessType, String tradePartition);
+    SwapMarketHistoryKlineResponse getSwapMarketHistoryKline(SwapMarketHistoryKlineRequest request);// 3.获取K线数据
 
-    SwapOpenInterestResponse getSwapOpenInterest(String contractCode, String pair, String contractType, String businessType, String tradePartition);
+    LinearSwapMarkPriceKlineResponse getLinearSwapMarkPriceKline(String contractCode, String period, Integer size);// 4.获取标记价格的 K 线数据
 
-    SwapMarketDepthResponse getSwapMarketDepth(String contractCode, String type);
+    SwapMarketDetailMergedResponse getSwapMarketDetailMerged(String contractCode); // 5.获取聚合行情
 
-    SwapMarketHistoryKlineResponse getSwapMarketHistoryKline(SwapMarketHistoryKlineRequest request);
+    BatchMergedV2Response getBatchMergedV2(String contractCode,String businessType);// 6.批量获取聚合行情（V2）
 
-    SwapMarketDetailMergedResponse getSwapMarketDetailMerged(String contractCode);
+    SwapMarketTradeResponse getSwapMarketTrade(String contractCode,String businessType,String tradePartition);// 7.获取市场最近成交记录
 
-    SwapMarketTradeResponse getSwapMarketTrade(String contractCode,String businessType,String tradePartition);
+    SwapMarketHistoryTradeResponse getSwapMarketHistoryTrade(String contractCode, Integer size);// 8.批量获取最近的交易记录
 
-    SwapMarketHistoryTradeResponse getSwapMarketHistoryTrade(String contractCode, Integer size);
+    SwapHisOpenInterestResponse getSwapHisOpenInterest(String contractCode,String pair,String contractType, String period, Integer size, Integer amountType);// 9.平台持仓量的查询
 
-    SwapRiskInfoResponse getSwapRiskInfo(String contractCode,String businessType,String tradePartition);
+    LinearSwapPremiumIndexKlineResponse getLinearSwapPremiumIndexKline(String contractCode, String period, Integer size);// 10.获取溢价指数K线数据
 
-    SwapInsuranceFundResponse getSwapInsuranceFund(String contractCode, Integer pageIndex,Integer pageSize);
+    LinearSwapEstimatedRateKlineResponse getLinearSwapEstimatedRateKline(String contractCode, String period, Integer size);// 11.获取预测资金费率的K线数据
 
-    SwapAdjustfactorResponse getSwapAdjustfactor(String contractCode,String tradePartition);
-
-    SwapHisOpenInterestResponse getSwapHisOpenInterest(String contractCode,String pair,String contractType, String period, Integer size, Integer amountType);
-
-    SwapEliteAccountRatioResponse getSwapEliteAccountRatio(String contractCode, String period);
-
-    SwapElitePositionRatioResponse getSwapElitePositionRatio(String contractCode, String period);
-
-    SwapApiStateResponse getSwapApiState(String contractCode,String tradePartition);
-
-    SwapFundingRateResponse getSwapFundingRate(String contractCode);
-
-    SwapHistoricalFundingRateResponse getSwapHistoricalFundingRate(String contractCode, Integer pageIndex, Integer pageSize);
-
-    SwapLiquidationOrdersResponse getSwapLiquidationOrders(SwapLiquidationOrdersRequest request);
-
-    LinearSwapPremiumIndexKlineResponse getLinearSwapPremiumIndexKline(String contractCode, String period, Integer size);
-
-    LinearSwapEstimatedRateKlineResponse getLinearSwapEstimatedRateKline(String contractCode, String period, Integer size);
-
-    LinearSwapBasisResponse getLinearSwapBasis(LinearSwapBasisRequest request);
-
-    SwapEstimatedSettlementPriceResponse getSwapEstimatedSettlementPrice(String contractCode,String pair,String contractType,String businessType,String tradePartition);
-
-    BatchMergedResponse getBatchMerged(String contractCode,String businessType,String tradePartition);
-
-    LinearSwapMarkPriceKlineResponse getLinearSwapMarkPriceKline(String contractCode, String period, Integer size);
-
-    SwapLadderMarginResponse getSwapLadderMargin(String contractCode,String tradePartition);
-
-    SwapBatchFundingRateResponse getSwapBatchFundingRate(String contractCode,String tradePartition);
-
-    MarketBboResponse getMarketBbo(String contractCode,String businessType, String tradePartition);
-
-    SwapSettlementRecordsResponse getSwapSettlementRecords(String contractCode,Long startTime,Long endTime,Integer pageIndex,Integer pageSize);
-
-    BatchMergedV2Response getBatchMergedV2(String contractCode,String businessType);
-
-    SwapQueryElementsResponse getSwapQueryElements(String contractCode);
-
+    LinearSwapBasisResponse getLinearSwapBasis(LinearSwapBasisRequest request);// 12.获取基差数据
 }

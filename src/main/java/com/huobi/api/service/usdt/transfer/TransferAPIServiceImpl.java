@@ -6,17 +6,20 @@ import com.huobi.api.exception.ApiException;
 import com.huobi.api.request.usdt.transfer.UsdtSwapTransferRequest;
 import com.huobi.api.response.usdt.transfer.UsdtSwapTransferResponse;
 import com.huobi.api.util.HbdmHttpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TransferApiServiceImpl implements TransferApiService {
+public class TransferAPIServiceImpl implements TransferAPIService {
 
     String api_key = ""; // huobi申请的apiKey
     String secret_key = ""; // huobi申请的secretKey
     String url_prex = "https://api.huobi.pro";
+    Logger logger = LoggerFactory.getLogger(getClass());
 
-    public TransferApiServiceImpl(String api_key, String secret_key) {
+    public TransferAPIServiceImpl(String api_key, String secret_key) {
         this.api_key = api_key;
         this.secret_key = secret_key;
     }

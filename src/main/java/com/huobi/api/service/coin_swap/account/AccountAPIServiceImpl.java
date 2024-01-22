@@ -162,37 +162,6 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapFinancialRecordResponse getSwapFinancialRecord(SwapFinancialRecordRequest request) {
-        String body;
-        try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("contract_code", request.getContractCode().toUpperCase());
-            if (StringUtils.isNoneEmpty(request.getType())) {
-                params.put("type", request.getType());
-            }
-            if (request.getCreateDate() != null) {
-                params.put("create_date", request.getCreateDate());
-            }
-            if (request.getPageIndex() != null) {
-                params.put("page_index", request.getPageIndex());
-            }
-            if (request.getPageSize() != null) {
-                params.put("page_size", request.getPageSize());
-            }
-            body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiCoinMarginedSwapAPIOptions.SWAP_FINANCIAL_RECORD, params);
-            logger.debug("body:{}", body);
-            SwapFinancialRecordResponse response = JSON.parseObject(body, SwapFinancialRecordResponse.class);
-            if ("ok".equalsIgnoreCase(response.getStatus())) {
-                return response;
-            }
-
-        } catch (Exception e) {
-            throw new ApiException(e);
-        }
-        throw new ApiException(body);
-    }
-
-    @Override
     public SwapOrderLimitResponse getSwapOrderLimitResponse(String contractCode, String orderPriceType) {
         String body;
         try {
@@ -338,42 +307,6 @@ public class AccountAPIServiceImpl implements AccountAPIService {
             body = HbdmHttpClient.getInstance().doGetKey(api_key, secret_key, url_prex + HuobiCoinMarginedSwapAPIOptions.SWAP_API_TRADING_STATUS, params);
             logger.debug("body:{}", body);
             SwapApiTradingStatusResponse response = JSON.parseObject(body, SwapApiTradingStatusResponse.class);
-            if ("ok".equalsIgnoreCase(response.getStatus())) {
-                return response;
-            }
-        } catch (Exception e) {
-            throw new ApiException(e);
-        }
-        throw new ApiException(body);
-    }
-
-    @Override
-    public SwapFinancialRecordExactResponse getSwapFinancialRecordExact(SwapFinancialRecordExactRequest request) {
-        String body;
-        try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("contract_code", request.getContractCode().toUpperCase());
-            if (request.getType() != null) {
-                params.put("type", request.getType());
-            }
-            if (request.getStartTime()!=null) {
-                params.put("start_time", request.getStartTime());
-            }
-            if (request.getEndTime() != null) {
-                params.put("end_time", request.getEndTime());
-            }
-            if (request.getFromId() != null) {
-                params.put("from_id", request.getFromId());
-            }
-            if (request.getSize()!=null){
-                params.put("size",request.getSize());
-            }
-            if (request.getDirect()!=null){
-                params.put("direct",request.getDirect());
-            }
-            body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiCoinMarginedSwapAPIOptions.SWAP_FINANCIAL_RECORD_EXACT, params);
-            logger.debug("body:{}", body);
-            SwapFinancialRecordExactResponse response = JSON.parseObject(body, SwapFinancialRecordExactResponse.class);
             if ("ok".equalsIgnoreCase(response.getStatus())) {
                 return response;
             }

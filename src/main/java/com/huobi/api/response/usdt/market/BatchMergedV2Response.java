@@ -24,8 +24,8 @@ public class BatchMergedV2Response {
         private String contractCode;
         private Long id;
         private String amount;
-        private List ask;
-        private List bid;
+        private BigDecimal[] ask;
+        private BigDecimal[] bid;
         private String open;
         private String close;
         private BigDecimal count;

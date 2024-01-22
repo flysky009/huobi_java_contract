@@ -13,72 +13,31 @@ import com.huobi.api.response.usdt.trade.SwapMatchResultsExactV3Response;
 import com.huobi.api.response.usdt.trade.SwapMatchResultsV3Response;
 
 public interface TradeAPIService {
-    SwapOrderResponse swapOrderRequest(SwapOrderRequest request);//合约下单
+    SwapCancelAfterResponse swapCancelAfterResponse(SwapCancelAfterRequest request);// 1.自动撤单
 
-    SwapBatchorderResponse swapBatchorderRequest(SwapBatchorderRequest request);//合约批量下单
+    SwapOrderResponse swapOrderRequest(SwapOrderRequest request);// 2.合约下单
 
-    SwapCancelResponse swapCancelRequest(SwapCancelRequest request);//撤销订单
+    SwapBatchorderResponse swapBatchorderRequest(SwapBatchorderRequest request);// 3.合约批量下单
 
-    SwapCancelallResponse swapCancelallRequest(SwapCancelallRequest request);//全部撤单
+    SwapCancelResponse swapCancelRequest(SwapCancelRequest request);// 4.撤销订单
 
-    SwapOrderInfoResponse swapOrderInfoRequest(SwapOrderInfoRequest request);//获取合约订单信息
+    SwapCancelallResponse swapCancelallRequest(SwapCancelallRequest request);// 5.全部撤单
 
+    SwapSwitchLeverRateResponse swapSwitchLeverRateResponse(String contractCdoe,Integer leverRate);// 6.切换杠杆
 
-    SwapOrderDetailResponse swapOrderDetailRequest(SwapOrderDetailRequest request);//获取订单明细信息
+    SwapOrderInfoResponse swapOrderInfoRequest(SwapOrderInfoRequest request);// 7.获取合约订单信息
 
-    SwapOpenordersResponse swapOpenordersRequest(SwapOpenordersRequest request);//获取合约当前未成交委托
+    SwapOrderDetailResponse swapOrderDetailRequest(SwapOrderDetailRequest request);// 8.获取订单明细信息
 
-    SwapHisordersResponse swapHisordersRequest(SwapHisordersRequest request);//获取合约历史委托
+    SwapOpenordersResponse swapOpenordersRequest(SwapOpenordersRequest request);// 9.获取合约当前未成交委托
 
-    SwapMatchresultsResponse swapMatchresultsRequest(SwapMatchresultsRequest request);//获取历史成交记录
+    SwapHisordersV3Response swapHisordersV3Response(SwapHisordersV3Request request);// 10.获取合约历史委托(新)
 
-    SwapLightningClosePositionResponse swapLightningClosePositionRequest(SwapLightningClosePositionRequest request);//闪电平仓下单
+    SwapHisordersExactV3Response swapHisordersExactV3Response(SwapHisordersExactV3Request request);// 11.组合查询合约历史委托(新)
 
-    SwapTriggerOrderResponse swapTriggerOrderResponse(SwapTriggerOrderRequest request);//计划委托下单
+    SwapMatchResultsV3Response swapMatchResultsV3Response(SwapMatchResultsV3Request request);// 12.获取历史成交记录（新）
 
-    SwapTriggerCancelResponse swapTriggerCancelResponse(SwapTriggerCancelRequest request);//计划委托撤单
+    SwapMatchResultsExactV3Response swapMatchResultsExactV3Response(SwapMatchResultsExactV3Request request);// 13.组合查询用户历史成交记录（新）
 
-    SwapTriggerCancelallResponse swapTriggerCancelallResponse(SwapTriggerCancelallRequest request);//计划委托合部撤单
-
-    SwapTriggerOpenordersResponse swapTriggerOpenordersResponse(SwapTriggerOpenordersRequest request);//获取计划委托当前委托
-
-    SwapTriggerHisordersResponse swapTriggerHisordersResponse(SwapTriggerHisordersRequest request);//获取计划委托历史委托
-
-    SwapSwitchLeverRateResponse swapSwitchLeverRateResponse(String contractCdoe,Integer leverRate);//切换杠杆
-
-    SwapHisordersExactResponse swapHisordersExactResponse(SwapHisordersExectRequest request);//组合查询合约历史委托
-
-    SwapMatchresultsExactResponse swapMatchresultsExactResponse(SwapMatchresultsExactRequest request);//组合查询用户历史成交记录
-
-    SwapTpslOrderResponse swapTpslOrderResponse(SwapTpslOrderRequest request);
-
-    SwapTpslCancelResponse swapTpslCancelResponse(SwapTpslCancelRequest request);
-
-    SwapTpslCancelallResponse swapTpslCancelallResponse(SwapTpslCancelallRequest request);
-
-    SwapTpslOpenordersResponse swapTpslOpenordersResponse(SwapTpslOpenordersRequest request);
-
-    SwapTpslHisordersResponse swapTpslHisordersResponse(SwapTpslHisordersRequset request);
-
-    SwapRelationTpslOrderResponse swapRelationTpslOrderResponse(SwapRelationTpslOrderRequest request);
-
-    SwapTrackOrderResponse swapTrackOrderResponse(SwapTrackOrderRequest request);
-
-    SwapTrackCancelResponse swapTrackCancelResponse(SwapTrackCancelRequest request);
-
-    SwapTrackCancelallResponse swapTrackCancelallResponse(SwapTrackCancelallRequest request);
-
-    SwapTrackOpenordersResponse swapTrackOpenordersResponse(SwapTrackOpenordersRequest request);
-
-    SwapTrackHisordersResponse swapTrackHisordersResponse(SwapTrackHisordersRequest request);
-
-    SwapCancelAfterResponse swapCancelAfterResponse(SwapCancelAfterRequest request);
-
-    SwapHisordersV3Response swapHisordersV3Response(SwapHisordersV3Request request);
-
-    SwapHisordersExactV3Response swapHisordersExactV3Response(SwapHisordersExactV3Request request);
-
-    SwapMatchResultsV3Response swapMatchResultsV3Response(SwapMatchResultsV3Request request);
-
-    SwapMatchResultsExactV3Response swapMatchResultsExactV3Response(SwapMatchResultsExactV3Request request);
+    SwapLightningClosePositionResponse swapLightningClosePositionRequest(SwapLightningClosePositionRequest request); // 14.闪电平仓下单
 }
