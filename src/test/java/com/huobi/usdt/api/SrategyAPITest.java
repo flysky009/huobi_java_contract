@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 
 @FixMethodOrder(MethodSorters.JVM)
 public class SrategyAPITest implements BaseTest{
-    StrategyAPIServiceImpl huobiAPIService  = new StrategyAPIServiceImpl("dbfd1732-fcd5eec8-13a02ff6-bgrdawsdsd", "d05ed75e-e4de67d0-958e1b82-94062");
+    StrategyAPIServiceImpl huobiAPIService  = new StrategyAPIServiceImpl("", "");
 
     @Test
     public void swapTriggerOrderRequest() {

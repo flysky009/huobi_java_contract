@@ -12,7 +12,7 @@ import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.JVM)
 public class UnifiedAccountAPITest implements BaseTest{
-    UnifiedAccountAPIServiceImpl huobiAPIService  = new UnifiedAccountAPIServiceImpl("dbfd1732-fcd5eec8-13a02ff6-bgrdawsdsd", "d05ed75e-e4de67d0-958e1b82-94062");
+    UnifiedAccountAPIServiceImpl huobiAPIService  = new UnifiedAccountAPIServiceImpl("", "");
 
     @Test
     public void getUnifiedAccountInfo(){

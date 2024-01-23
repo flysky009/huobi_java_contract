@@ -11,7 +11,7 @@ import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.JVM)
 public class CrossReferenceAPITest implements BaseTest{
-    CrossReferenceAPIServiceImpl huobiCrossAPIService  = new CrossReferenceAPIServiceImpl("dbfd1732-fcd5eec8-13a02ff6-bgrdawsdsd", "d05ed75e-e4de67d0-958e1b82-94062");
+    CrossReferenceAPIServiceImpl huobiCrossAPIService  = new CrossReferenceAPIServiceImpl("", "");
 
     @Test
     public void getSwapCrossLadderMargin() {
