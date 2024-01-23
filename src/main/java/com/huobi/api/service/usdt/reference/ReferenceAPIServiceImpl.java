@@ -17,16 +17,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ReferenceAPIServiceImpl implements ReferenceAPIService{
-    String api_key = ""; // huobi申请的apiKey
-    String secret_key = ""; // huobi申请的secretKey
     String url_prex = "https://api.hbdm.com";
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    public ReferenceAPIServiceImpl(String api_key, String secret_key) {
-        this.api_key = api_key;
-        this.secret_key = secret_key;
-    }
 
     @Override
     public SwapFundingRateResponse getSwapFundingRate(String contractCode) {
@@ -47,15 +41,12 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
     }
 
     @Override
-    public SwapBatchFundingRateResponse getSwapBatchFundingRate(String contractCode, String tradePartition) {
+    public SwapBatchFundingRateResponse getSwapBatchFundingRate(String contractCode) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNotEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_BATCH_FUNDING_RATE, params);
             logger.debug("body:{}", body);
@@ -199,15 +190,12 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
     }
 
     @Override
-    public SwapApiStateResponse getSwapApiState(String contractCode,String tradePartition) {
+    public SwapApiStateResponse getSwapApiState(String contractCode) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNoneEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_API_STATE, params);
             logger.debug("body:{}", body);
@@ -222,15 +210,12 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
     }
 
     @Override
-    public SwapLadderMarginResponse getSwapLadderMargin(String contractCode,String tradePartition) {
+    public SwapLadderMarginResponse getSwapLadderMargin(String contractCode) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNotEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_LADDER_MARGIN, params);
             logger.debug("body:{}", body);
@@ -245,7 +230,7 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
     }
 
     @Override
-    public SwapEstimatedSettlementPriceResponse getSwapEstimatedSettlementPrice(String contractCode,String pair,String contractType,String businessType,String tradePartition) {
+    public SwapEstimatedSettlementPriceResponse getSwapEstimatedSettlementPrice(String contractCode,String pair,String contractType,String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -261,9 +246,6 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
             if (StringUtils.isNotEmpty(businessType)){
                 params.put("business_type",businessType);
             }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
-            }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_ESTIMATED_SETTLEMENT_PRICE, params);
             logger.debug("body:{}", body);
             SwapEstimatedSettlementPriceResponse response = JSON.parseObject(body, SwapEstimatedSettlementPriceResponse.class);
@@ -277,15 +259,12 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
     }
 
     @Override
-    public SwapAdjustfactorResponse getSwapAdjustfactor(String contractCode,String tradePartition) {
+    public SwapAdjustfactorResponse getSwapAdjustfactor(String contractCode) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNoneEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_ADJUSTFACTOR, params);
             logger.debug("body:{}", body);
@@ -324,7 +303,7 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
     }
 
     @Override
-    public SwapRiskInfoResponse getSwapRiskInfo(String contractCode,String businessType,String tradePartition) {
+    public SwapRiskInfoResponse getSwapRiskInfo(String contractCode,String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -333,9 +312,6 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
             }
             if (StringUtils.isNotEmpty(businessType)){
                 params.put("business_type",businessType);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_RISK_INFO, params);
             logger.debug("body:{}", body);
@@ -350,7 +326,7 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
     }
 
     @Override
-    public SwapPriceLimitResponse getSwapPriceLimit(String contractCode, String pair, String contractType, String businessType, String tradePartition) {
+    public SwapPriceLimitResponse getSwapPriceLimit(String contractCode, String pair, String contractType, String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -365,9 +341,6 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
             }
             if (StringUtils.isNotEmpty(businessType)){
                 params.put("business_type",businessType);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_PRICE_LIMIT, params);
             logger.debug("body:{}", body);
@@ -383,7 +356,7 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
     }
 
     @Override
-    public SwapOpenInterestResponse getSwapOpenInterest(String contractCode, String pair, String contractType, String businessType, String tradePartition) {
+    public SwapOpenInterestResponse getSwapOpenInterest(String contractCode, String pair, String contractType, String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -399,9 +372,6 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
             if (StringUtils.isNotEmpty(businessType)){
                 params.put("business_type",businessType);
             }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
-            }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_OPEN_INTEREST, params);
             logger.debug("body:{}", body);
             SwapOpenInterestResponse response = JSON.parseObject(body, SwapOpenInterestResponse.class);
@@ -415,7 +385,7 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
     }
 
     @Override
-    public SwapContractInfoResponse getSwapContractInfo(String contractCode, String supportMarginMode, String pair, String contractType, String businessType, String tradePartition) {
+    public SwapContractInfoResponse getSwapContractInfo(String contractCode, String supportMarginMode, String pair, String contractType, String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -434,9 +404,6 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
             if (StringUtils.isNotEmpty(businessType)){
                 params.put("business_type",businessType);
             }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
-            }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_CONTRACT_INFO, params);
             logger.debug("body:{}", body);
             SwapContractInfoResponse response = JSON.parseObject(body, SwapContractInfoResponse.class);
@@ -450,15 +417,12 @@ public class ReferenceAPIServiceImpl implements ReferenceAPIService{
     }
 
     @Override
-    public SwapIndexResponse getSwapIndex(String contractCode, String tradePartition) {
+    public SwapIndexResponse getSwapIndex(String contractCode) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNoneEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_INDEX, params);
             logger.debug("body:{}", body);

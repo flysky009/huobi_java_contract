@@ -17,11 +17,11 @@ import java.util.List;
 @FixMethodOrder(MethodSorters.JVM)
 public class CrossTradeAPITest implements BaseTest {
 
-    CrossTradeAPIServiceImpl huobiCrossAPIService = new CrossTradeAPIServiceImpl("", "");
+    CrossTradeAPIServiceImpl huobiCrossAPIService = new CrossTradeAPIServiceImpl("dbfd1732-fcd5eec8-13a02ff6-bgrdawsdsd", "d05ed75e-e4de67d0-958e1b82-94062");
 
     @Test
     public void getSwapCrossTradeState() {
-        SwapCrossTradeStateResponse response = huobiCrossAPIService.getSwapCrossTradeState("btc-usdt-220325","","","all","");
+        SwapCrossTradeStateResponse response = huobiCrossAPIService.getSwapCrossTradeState("btc-usdt-220325","","","all");
         logger.debug("1.查询系统交易权限:{}", JSON.toJSONString(response));
     }
 
@@ -50,7 +50,7 @@ public class CrossTradeAPITest implements BaseTest {
     @Test
     public void swapCrossBatchorderRequest() {
         List<SwapCrossOrderRequest> list = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 1; i++) {
             SwapCrossOrderRequest request = SwapCrossOrderRequest.builder()
                     .contractCode("ETH-USDT")
                     .volume(1l)

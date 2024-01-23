@@ -17,7 +17,7 @@ import java.util.List;
 @FixMethodOrder(MethodSorters.JVM)
 public class TradeAPITest implements BaseTest {
 
-    TradeAPIServiceImpl huobiAPIService = new TradeAPIServiceImpl("", "");
+    TradeAPIServiceImpl huobiAPIService = new TradeAPIServiceImpl("dbfd1732-fcd5eec8-13a02ff6-bgrdawsdsd", "d05ed75e-e4de67d0-958e1b82-94062");
 
     @Test
     public void linearCancelAfterResponse(){

@@ -25,24 +25,24 @@ public class AccountAPITest implements BaseTest {
 
     @Test
     public void getSwapAccountInfoResponse() {
-        SwapAccountInfoResponse response = huobiAPIService.getSwapAccountInfo("btc-usdt","");
+        SwapAccountInfoResponse response = huobiAPIService.getSwapAccountInfo("btc-usdt");
         logger.debug("2.获取用户账户信息：{}", JSON.toJSONString(response));
-        response = huobiAPIService.getSwapAccountInfo("","");
+        response = huobiAPIService.getSwapAccountInfo("");
         logger.debug("2.获取用户账户信息：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapPositionInfo() {
-        SwapPositionInfoResponse response = huobiAPIService.getSwapPositionInfo("ETH-usdt","");
+        SwapPositionInfoResponse response = huobiAPIService.getSwapPositionInfo("ETH-usdt");
         logger.debug("3.获取用户持仓信息：{}", JSON.toJSONString(response));
 
-        response = huobiAPIService.getSwapPositionInfo("","");
+        response = huobiAPIService.getSwapPositionInfo("");
         logger.debug("3.获取用户持仓信息：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapAccountPositionInfo() {
-        SwapAccountPositionInfoResponse response = huobiAPIService.getSwapAccountPositionInfo("btc-usdt","");
+        SwapAccountPositionInfoResponse response = huobiAPIService.getSwapAccountPositionInfo("btc-usdt");
         logger.debug("4.查询用户账户和持仓信息：{}", JSON.toJSONString(response));
     }
 
@@ -62,29 +62,29 @@ public class AccountAPITest implements BaseTest {
 
     @Test
     public void getSwapSubAccountList() {
-        SwapSubAccountListResponse response = huobiAPIService.getSwapSubAccountList("btc-usdt","","",null);
+        SwapSubAccountListResponse response = huobiAPIService.getSwapSubAccountList("btc-usdt","",null);
         logger.debug("7.查询母账户下所有子账户资产信息：{}", JSON.toJSONString(response));
 
-        response = huobiAPIService.getSwapSubAccountList("","","",null);
+        response = huobiAPIService.getSwapSubAccountList("","",null);
         logger.debug("7.查询母账户下所有子账户资产信息：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapSubAccountInfoList() {
-        SwapSubAccountInfoListResponse response = huobiAPIService.getSwapSubAccountInfoList("xrp-usdt", 1, 20,"");
+        SwapSubAccountInfoListResponse response = huobiAPIService.getSwapSubAccountInfoList("xrp-usdt", 1, 20);
         logger.debug("8.批量获取子账户资产信息：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapSubAccountInfo() {
-        SwapSubAccountInfoResponse response = huobiAPIService.getSwapSubAccountInfo("",1L,"");
+        SwapSubAccountInfoResponse response = huobiAPIService.getSwapSubAccountInfo("",1L);
         logger.debug("9.查询单个子账户资产信息：{}", JSON.toJSONString(response));
         logger.debug(response.getStatus());
     }
 
     @Test
     public void getSwapSubPositionInfo() {
-        SwapSubPositionInfoResponse response = huobiAPIService.getSwapSubPositionInfo("BTC-USDT", 1L,"");
+        SwapSubPositionInfoResponse response = huobiAPIService.getSwapSubPositionInfo("BTC-USDT", 1L);
         logger.debug("10.查询单个子账户持仓信息：{}", JSON.toJSONString(response));
         logger.debug(response.getStatus());
     }
@@ -107,46 +107,46 @@ public class AccountAPITest implements BaseTest {
 
     @Test
     public void getSwapAvailableLevelRateResponse() {
-        SwapAvailableLevelRateResponse response = huobiAPIService.getSwapAvailableLevelRate("","");
+        SwapAvailableLevelRateResponse response = huobiAPIService.getSwapAvailableLevelRate("");
         logger.debug("13.查询用户可用杠杆倍数：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapOrderLimitResponse() {
-        SwapOrderLimitResponse response = huobiAPIService.getSwapOrderLimitResponse("btc-usdt", "limit","","","","");
+        SwapOrderLimitResponse response = huobiAPIService.getSwapOrderLimitResponse("btc-usdt", "limit","","","");
         logger.debug("14.查询用户当前的下单量限制：{}", JSON.toJSONString(response));
-        response = huobiAPIService.getSwapOrderLimitResponse("", "limit","","","","");
+        response = huobiAPIService.getSwapOrderLimitResponse("", "limit","","","");
         logger.debug("14.查询用户当前的下单量限制：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapFeeResponse() {
-        SwapFeeResponse response = huobiAPIService.getSwapFeeResponse("BTC-USDT","","","","");
+        SwapFeeResponse response = huobiAPIService.getSwapFeeResponse("BTC-USDT","","","");
         logger.debug("15.查询用户当前的手续费费率：{}", JSON.toJSONString(response));
-        response = huobiAPIService.getSwapFeeResponse("","","","","");
+        response = huobiAPIService.getSwapFeeResponse("","","","");
         logger.debug("15.查询用户当前的手续费费率：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapTransferLimitResponse() {
-        SwapTransferLimitResponse response = huobiAPIService.getSwapTransferLimitResponse("btc-usdt","");
+        SwapTransferLimitResponse response = huobiAPIService.getSwapTransferLimitResponse("btc-usdt");
         logger.debug("16.查询用户当前的划转限制：{}", JSON.toJSONString(response));
-        response = huobiAPIService.getSwapTransferLimitResponse("","");
+        response = huobiAPIService.getSwapTransferLimitResponse("");
         logger.debug("16.查询用户当前的划转限制：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapPositionLimitResponse() {
-        SwapPositionLimitResponse response = huobiAPIService.getSwapPositionLimitResponse("btc-usdt","");
+        SwapPositionLimitResponse response = huobiAPIService.getSwapPositionLimitResponse("btc-usdt");
         logger.debug("17.用户持仓量限制的查询：{}", JSON.toJSONString(response));
 
-        response = huobiAPIService.getSwapPositionLimitResponse("","");
+        response = huobiAPIService.getSwapPositionLimitResponse("");
         logger.debug("17.用户持仓量限制的查询：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapLeverPositionLimit(){
-        SwapLeverPositionLimitResponse response=huobiAPIService.getSwapLeverPositionLimit("btc-usdt","",1);
+        SwapLeverPositionLimitResponse response=huobiAPIService.getSwapLeverPositionLimit("btc-usdt",1);
         logger.debug("18.查询用户所有杠杆持仓量限制：{}", JSON.toJSONString(response));
     }
 

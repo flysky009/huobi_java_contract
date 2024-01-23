@@ -26,7 +26,7 @@ public class CrossReferenceAPIServiceImpl implements CrossReferenceAPIService{
     }
 
     @Override
-    public SwapLadderMarginResponse getSwapCrossLadderMargin(String contractCode, String contractType, String pair, String businessType, String tradePartition) {
+    public SwapLadderMarginResponse getSwapCrossLadderMargin(String contractCode, String contractType, String pair, String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -41,9 +41,6 @@ public class CrossReferenceAPIServiceImpl implements CrossReferenceAPIService{
             }
             if (StringUtils.isNotEmpty(businessType)){
                 params.put("business_type",businessType);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapCrossAPIConstants.SWAP_CROSS_LADDER_MARGIN, params);
             logger.debug("body:{}", body);
@@ -58,7 +55,7 @@ public class CrossReferenceAPIServiceImpl implements CrossReferenceAPIService{
     }
 
     @Override
-    public SwapCrossAdjustfactorResponse getSwapCrossAdjustfactor(String contractCode, String contractType, String pair, String businessType, String tradePartition) {
+    public SwapCrossAdjustfactorResponse getSwapCrossAdjustfactor(String contractCode, String contractType, String pair, String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -73,9 +70,6 @@ public class CrossReferenceAPIServiceImpl implements CrossReferenceAPIService{
             }
             if (StringUtils.isNotEmpty(businessType)){
                 params.put("business_type",businessType);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapCrossAPIConstants.SWAP_CROSS_ADJUSTFACTOR, params);
             logger.debug("body:{}", body);

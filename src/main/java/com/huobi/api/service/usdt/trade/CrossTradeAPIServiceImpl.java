@@ -32,7 +32,7 @@ public class CrossTradeAPIServiceImpl implements CrossTradeAPIService {
     }
 
     @Override
-    public SwapCrossTradeStateResponse getSwapCrossTradeState(String contractCode, String contractType, String pair, String businessType, String tradePartition) {
+    public SwapCrossTradeStateResponse getSwapCrossTradeState(String contractCode, String contractType, String pair, String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -47,9 +47,6 @@ public class CrossTradeAPIServiceImpl implements CrossTradeAPIService {
             }
             if (StringUtils.isNotEmpty(businessType)){
                 params.put("business_type",businessType);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapCrossAPIConstants.SWAP_CROSS_TRADE_STATE, params);
             logger.debug("body:{}", body);

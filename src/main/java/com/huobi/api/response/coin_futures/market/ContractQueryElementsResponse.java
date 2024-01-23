@@ -47,9 +47,9 @@ public class ContractQueryElementsResponse {
         @SerializedName("settle_period")
         private Integer settlePeriod;
         @SerializedName("funding_rate_cap")
-        private Integer fundingRateCap;
+        private BigDecimal fundingRateCap;
         @SerializedName("funding_rate_floor")
-        private Integer fundingRateFloor;
+        private BigDecimal fundingRateFloor;
         @SerializedName("long_position_limit")
         private BigDecimal longPositionLimit;
         @SerializedName("offset_order_limit")

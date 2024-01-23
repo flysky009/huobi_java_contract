@@ -444,7 +444,7 @@ public class TradeAPIServiceImpl implements TradeAPIService {
             if (StringUtils.isNotEmpty(request.getPriceType())) {
                 params.put("price_type", request.getPriceType());
             }
-            body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiCoinMarginedSwapAPIOptions.SWAP_HISORDERS_EXACT_V3, params);
+            body = HbdmHttpClient.getInstance().doPost(api_key, secret_key,url_prex + HuobiCoinMarginedSwapAPIOptions.SWAP_HISORDERS_EXACT_V3, params);
             logger.debug("body:{}", body);
             SwapHisordersExactV3Response response = JSON.parseObject(body, SwapHisordersExactV3Response.class);
             if (response.getCode() != null && response.getCode() == 200){

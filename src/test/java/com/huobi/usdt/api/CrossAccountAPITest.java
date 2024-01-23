@@ -17,16 +17,16 @@ public class CrossAccountAPITest implements BaseTest {
 
     @Test
     public void getSwapCrossAccountInfoResponse() {
-        SwapCrossAccountInfoResponse response = huobiCrossAPIService.getSwapCrossAccountInfo("usdt","");
+        SwapCrossAccountInfoResponse response = huobiCrossAPIService.getSwapCrossAccountInfo("usdt");
         logger.debug("1.获取用户账户信息：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapCrossPositionInfo() {
-        SwapCrossPositionInfoResponse response = huobiCrossAPIService.getSwapCrossPositionInfo("eth-usdt","","","");
+        SwapCrossPositionInfoResponse response = huobiCrossAPIService.getSwapCrossPositionInfo("eth-usdt","","");
         logger.debug("2.获取用户持仓信息：{}", JSON.toJSONString(response));
 
-        response = huobiCrossAPIService.getSwapCrossPositionInfo("","","","");
+        response = huobiCrossAPIService.getSwapCrossPositionInfo("","","");
         logger.debug("2.获取用户持仓信息：{}", JSON.toJSONString(response));
     }
 
@@ -38,36 +38,36 @@ public class CrossAccountAPITest implements BaseTest {
 
     @Test
     public void getSwapCrossSubAccountList() {
-        SwapCrossSubAccountListResponse response = huobiCrossAPIService.getSwapCrossSubAccountList("usdt","",0L,"");
+        SwapCrossSubAccountListResponse response = huobiCrossAPIService.getSwapCrossSubAccountList("usdt","",0L);
         logger.debug("4.查询母账户下所有子账户资产信息：{}", JSON.toJSONString(response));
 
-        response = huobiCrossAPIService.getSwapCrossSubAccountList("","",null,"");
+        response = huobiCrossAPIService.getSwapCrossSubAccountList("","",null);
         logger.debug("4.查询母账户下所有子账户资产信息：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapCrossSubCrossAccountInfoList() {
-        SwapSubAccountInfoListResponse response = huobiCrossAPIService.getSwapCrossSubAccountInfoList("usdt", 1, 20,"");
+        SwapSubAccountInfoListResponse response = huobiCrossAPIService.getSwapCrossSubAccountInfoList("usdt", 1, 20);
         logger.debug("5.批量获取子账户资产信息：{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapCrossSubAccountInfo() {
-        SwapCrossSubAccountInfoResponse response = huobiCrossAPIService.getSwapCrossSubAccountInfo("", 1l,"");
+        SwapCrossSubAccountInfoResponse response = huobiCrossAPIService.getSwapCrossSubAccountInfo("", 1l);
         logger.debug("6.查询单个子账户资产信息：{}", JSON.toJSONString(response));
         logger.debug(response.getStatus());
     }
 
     @Test
     public void getSwapCrossSubPositionInfo() {
-        SwapCrossSubPositionInfoResponse response = huobiCrossAPIService.getSwapCrossSubPositionInfo("", 1l,"","","");
+        SwapCrossSubPositionInfoResponse response = huobiCrossAPIService.getSwapCrossSubPositionInfo("", 1l,"","");
         logger.debug("7.查询单个子账户持仓信息：{}", JSON.toJSONString(response));
         logger.debug(response.getStatus());
     }
 
     @Test
     public void getSwapCrossAvailableLevelRateResponse() {
-        SwapCrossAvailableLevelRateResponse response = huobiCrossAPIService.getSwapCrossAvailableLevelRate("","","","","");
+        SwapCrossAvailableLevelRateResponse response = huobiCrossAPIService.getSwapCrossAvailableLevelRate("","","","");
         logger.debug("8.查询用户可用杠杆倍数：{}", JSON.toJSONString(response));
     }
 
@@ -81,10 +81,10 @@ public class CrossAccountAPITest implements BaseTest {
 
     @Test
     public void getSwapCrossPositionLimitResponse() {
-        SwapCrossPositionLimitResponse response = huobiCrossAPIService.getSwapCrossPositionLimitResponse("btc-usdt","","","","");
+        SwapCrossPositionLimitResponse response = huobiCrossAPIService.getSwapCrossPositionLimitResponse("btc-usdt","","","");
         logger.debug("10.用户持仓量限制的查询：{}", JSON.toJSONString(response));
 
-        response = huobiCrossAPIService.getSwapCrossPositionLimitResponse("","","","","");
+        response = huobiCrossAPIService.getSwapCrossPositionLimitResponse("","","","");
         logger.debug("10.用户持仓量限制的查询：{}", JSON.toJSONString(response));
     }
 

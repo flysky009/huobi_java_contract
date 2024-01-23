@@ -15,13 +15,13 @@ public class CrossReferenceAPITest implements BaseTest{
 
     @Test
     public void getSwapCrossLadderMargin() {
-        SwapLadderMarginResponse response = huobiCrossAPIService.getSwapCrossLadderMargin("","","","","");
+        SwapLadderMarginResponse response = huobiCrossAPIService.getSwapCrossLadderMargin("","","","");
         logger.debug("1.获取平台阶梯保证金:{}", JSON.toJSONString(response));
     }
 
     @Test
     public void getSwapCrossAdjustfactor() {
-        SwapCrossAdjustfactorResponse response = huobiCrossAPIService.getSwapCrossAdjustfactor("btc-usdt","","","","");
+        SwapCrossAdjustfactorResponse response = huobiCrossAPIService.getSwapCrossAdjustfactor("btc-usdt","","","");
         logger.debug("2.查询平台阶梯调整系数:{}", JSON.toJSONString(response));
     }
 

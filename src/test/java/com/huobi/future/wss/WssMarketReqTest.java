@@ -20,7 +20,7 @@ public class WssMarketReqTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private String URL = "wss://www.btcgateway.pro/ws";//合约站行情请求以及订阅地址
+    private String URL = "wss://api.hbdm.com/ws";//合约站行情请求以及订阅地址
 
 
     /**

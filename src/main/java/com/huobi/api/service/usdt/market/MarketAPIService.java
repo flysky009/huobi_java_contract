@@ -8,7 +8,7 @@ import com.huobi.api.response.usdt.market.*;
 public interface MarketAPIService {
     SwapMarketDepthResponse getSwapMarketDepth(String contractCode, String type);// 1.获取行情深度数据
 
-    MarketBboResponse getMarketBbo(String contractCode,String businessType, String tradePartition);// 2.获取市场最优挂单
+    MarketBboResponse getMarketBbo(String contractCode,String businessType);// 2.获取市场最优挂单
 
     SwapMarketHistoryKlineResponse getSwapMarketHistoryKline(SwapMarketHistoryKlineRequest request);// 3.获取K线数据
 
@@ -18,7 +18,7 @@ public interface MarketAPIService {
 
     BatchMergedV2Response getBatchMergedV2(String contractCode,String businessType);// 6.批量获取聚合行情（V2）
 
-    SwapMarketTradeResponse getSwapMarketTrade(String contractCode,String businessType,String tradePartition);// 7.获取市场最近成交记录
+    SwapMarketTradeResponse getSwapMarketTrade(String contractCode,String businessType);// 7.获取市场最近成交记录
 
     SwapMarketHistoryTradeResponse getSwapMarketHistoryTrade(String contractCode, Integer size);// 8.批量获取最近的交易记录
 

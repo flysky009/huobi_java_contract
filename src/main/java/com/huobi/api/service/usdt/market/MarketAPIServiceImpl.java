@@ -88,7 +88,7 @@ public class MarketAPIServiceImpl implements MarketAPIService {
     }
 
     @Override
-    public SwapMarketTradeResponse getSwapMarketTrade(String contractCode,String businessType,String tradePartition) {
+    public SwapMarketTradeResponse getSwapMarketTrade(String contractCode,String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -97,9 +97,6 @@ public class MarketAPIServiceImpl implements MarketAPIService {
             }
             if (StringUtils.isNotEmpty(businessType)){
                 params.put("business_type",businessType);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.SWAP_MARKET_TRADE, params);
             logger.debug("body:{}", body);
@@ -253,7 +250,7 @@ public class MarketAPIServiceImpl implements MarketAPIService {
     }
 
     @Override
-    public MarketBboResponse getMarketBbo(String contractCode,String businessType,String tradePartition) {
+    public MarketBboResponse getMarketBbo(String contractCode,String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -262,9 +259,6 @@ public class MarketAPIServiceImpl implements MarketAPIService {
             }
             if (StringUtils.isNotEmpty(businessType)){
                 params.put("business_type",businessType);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doGet(url_prex + HuobiLinearSwapAPIConstants.MARKET_BBO, params);
             logger.debug("body:{}", body);

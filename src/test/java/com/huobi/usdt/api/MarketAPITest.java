@@ -24,7 +24,7 @@ public class MarketAPITest implements BaseTest {
 
     @Test
     public void getMarketBbo(){
-        MarketBboResponse response= huobiAPIService.getMarketBbo("","","");
+        MarketBboResponse response= huobiAPIService.getMarketBbo("","");
         logger.debug("2、获取市场最优挂单:{}",JSON.toJSONString(response));
     }
 
@@ -62,7 +62,7 @@ public class MarketAPITest implements BaseTest {
 
     @Test
     public void getSwapMarketTradeResponse() {
-        SwapMarketTradeResponse response = huobiAPIService.getSwapMarketTrade("BTC-USDT","","");
+        SwapMarketTradeResponse response = huobiAPIService.getSwapMarketTrade("BTC-USDT","");
         logger.debug("7.获取市场最近成交记录:{}", JSON.toJSONString(response));
     }
 

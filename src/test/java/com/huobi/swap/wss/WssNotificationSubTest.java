@@ -15,7 +15,7 @@ import java.util.List;
 public class WssNotificationSubTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    private String host = "api.hbdm.vn";
+    private String host = "api.hbdm.com";
     private String url = "/swap-notification";//注意地址前面要带上"/"
     WssNotificationHandle wssNotificationHandle = new WssNotificationHandle(host, url, "", "");
 

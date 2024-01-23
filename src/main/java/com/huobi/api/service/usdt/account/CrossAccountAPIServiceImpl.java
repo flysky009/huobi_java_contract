@@ -28,15 +28,12 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
     }
 
     @Override
-    public SwapCrossAccountInfoResponse getSwapCrossAccountInfo(String marginAccount, String tradePartition) {
+    public SwapCrossAccountInfoResponse getSwapCrossAccountInfo(String marginAccount) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNotEmpty(marginAccount)) {
                 params.put("margin_account", marginAccount.toUpperCase().toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapCrossAPIConstants.SWAP_CROSS_ACCOUNT_INFO, params);
             logger.debug("body:{}", body);
@@ -52,7 +49,7 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
     }
 
     @Override
-    public SwapCrossPositionInfoResponse getSwapCrossPositionInfo(String contractCode, String pair, String contractType, String tradePartition) {
+    public SwapCrossPositionInfoResponse getSwapCrossPositionInfo(String contractCode, String pair, String contractType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -64,9 +61,6 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
             }
             if (StringUtils.isNotEmpty(contractType)) {
                 params.put("contract_type", contractType);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapCrossAPIConstants.SWAP_CROSS_POSITION_INFO, params);
             logger.debug("body:{}", body);
@@ -101,7 +95,7 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
     }
 
     @Override
-    public SwapCrossSubAccountListResponse getSwapCrossSubAccountList(String marginAccount, String direct, Long fromId, String tradePartition) {
+    public SwapCrossSubAccountListResponse getSwapCrossSubAccountList(String marginAccount, String direct, Long fromId) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -113,9 +107,6 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
             }
             if (fromId != null) {
                 params.put("from_id", fromId);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapCrossAPIConstants.SWAP_CROSS_SUB_ACCOUNT_LIST, params);
             logger.debug("body:{}", body);
@@ -131,15 +122,12 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
     }
 
     @Override
-    public SwapCrossSubAccountInfoResponse getSwapCrossSubAccountInfo(String marginAccount, Long subUid, String tradePartition) {
+    public SwapCrossSubAccountInfoResponse getSwapCrossSubAccountInfo(String marginAccount, Long subUid) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNotEmpty(marginAccount)) {
                 params.put("margin_account", marginAccount.toUpperCase().toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             params.put("sub_uid", subUid);
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapCrossAPIConstants.SWAP_CROSS_SUB_ACCOUNT_INFO, params);
@@ -156,7 +144,7 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
     }
 
     @Override
-    public SwapCrossSubPositionInfoResponse getSwapCrossSubPositionInfo(String contractCode, Long subUid, String pair, String contractType,String tradePartition) {
+    public SwapCrossSubPositionInfoResponse getSwapCrossSubPositionInfo(String contractCode, Long subUid, String pair, String contractType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -168,9 +156,6 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
             }
             if (contractType != null) {
                 params.put("contract_type", contractType);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             params.put("sub_uid", subUid);
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapCrossAPIConstants.SWAP_CROSS_SUB_POSITION_INFO, params);
@@ -209,7 +194,7 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
     }
 
     @Override
-    public SwapCrossPositionLimitResponse getSwapCrossPositionLimitResponse(String contractCode, String pair, String contractType,String businessType,String tradePartition) {
+    public SwapCrossPositionLimitResponse getSwapCrossPositionLimitResponse(String contractCode, String pair, String contractType,String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -224,9 +209,6 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
             }
             if (businessType!=null){
                 params.put("business_type",businessType);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapCrossAPIConstants.SWAP_CROSS_POSITION_LIMIT, params);
             logger.debug("body:{}", body);
@@ -243,15 +225,12 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
 
 
     @Override
-    public SwapCrossAvailableLevelRateResponse getSwapCrossAvailableLevelRate(String contractCode, String pair, String contractType, String businessType, String tradePartition) {
+    public SwapCrossAvailableLevelRateResponse getSwapCrossAvailableLevelRate(String contractCode, String pair, String contractType, String businessType) {
         String body;
         Map<String, Object> params = new HashMap<>();
         try {
             if (StringUtils.isNoneEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             if (StringUtils.isNotEmpty(pair)) {
                 params.put("pair", pair);
@@ -275,16 +254,13 @@ public class CrossAccountAPIServiceImpl implements CrossAccountAPIService {
     }
 
     @Override
-    public SwapSubAccountInfoListResponse getSwapCrossSubAccountInfoList(String marginAccount, Integer pageIndex, Integer pagesize,String tradePartition) {
+    public SwapSubAccountInfoListResponse getSwapCrossSubAccountInfoList(String marginAccount, Integer pageIndex, Integer pagesize) {
         String body;
         Map<String, Object> params = new HashMap<>();
         try {
             params.put("margin_account", marginAccount);
             params.put("page_index", pageIndex);
             params.put("page_size", pagesize);
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
-            }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapCrossAPIConstants.SWAP_CROSS_SUB_ACCOUNT_INFO_LIST, params);
             logger.debug("body:{}", body);
             SwapSubAccountInfoListResponse response = JSON.parseObject(body, SwapSubAccountInfoListResponse.class);

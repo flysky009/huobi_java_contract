@@ -43,37 +43,39 @@ public class SwapQueryElementsResponse {
         @SerializedName("max_level")
         private Integer maxLevel;
         @SerializedName("open_order_limit")
-        private Integer openOrderLimit;
+        private BigDecimal openOrderLimit;
         @SerializedName("offset_order_limit")
-        private Integer offsetOrderLimit;
+        private BigDecimal offsetOrderLimit;
         @SerializedName("long_position_limit")
-        private Integer longPositionLimit;
+        private BigDecimal longPositionLimit;
         @SerializedName("short_position_limit")
-        private Integer shortPositionLimit;
+        private BigDecimal shortPositionLimit;
+        @SerializedName("price_tick")
+        private BigDecimal priceTick;
         @SerializedName("price_ticks")
         private List<PriceTicks> priceTicks;
         @SerializedName("instrument_values")
         private List<InstrumentValues> instrumentValues;
         @SerializedName("instrument_value")
-        private String instrumentValue;
+        private BigDecimal instrumentValue;
         @SerializedName("settle_period")
         private Integer settlePeriod;
         @SerializedName("funding_rate_cap")
-        private Integer fundingRateCap;
+        private BigDecimal fundingRateCap;
         @SerializedName("funding_rate_floor")
-        private Integer fundingRateFloor;
+        private BigDecimal fundingRateFloor;
         @SerializedName("hig_normal_limit")
-        private Integer higNormalLimit;
+        private BigDecimal higNormalLimit;
         @SerializedName("min_normal_limit")
-        private Integer minNormalLimit;
+        private BigDecimal minNormalLimit;
         @SerializedName("hig_open_limit")
-        private Integer higOpenLimit;
+        private BigDecimal higOpenLimit;
         @SerializedName("min_open_limit")
-        private Integer minOpenLimit;
+        private BigDecimal minOpenLimit;
         @SerializedName("hig_trade_limit")
-        private Integer higTradeLimit;
+        private BigDecimal higTradeLimit;
         @SerializedName("min_trade_limit")
-        private Integer minTradeLimit;
+        private BigDecimal minTradeLimit;
         @SerializedName("contract_infos")
         private List<ContractInfos> contractInfos;
         @SerializedName("order_limits")

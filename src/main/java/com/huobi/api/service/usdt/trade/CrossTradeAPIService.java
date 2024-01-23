@@ -6,7 +6,7 @@ import com.huobi.api.response.usdt.market.SwapCrossTradeStateResponse;
 import com.huobi.api.response.usdt.trade.*;
 
 public interface CrossTradeAPIService {
-    public SwapCrossTradeStateResponse getSwapCrossTradeState(String contractCode, String contractType, String pair, String businessType, String tradePartition);// 1.【全仓】查询系统交易权限
+    public SwapCrossTradeStateResponse getSwapCrossTradeState(String contractCode, String contractType, String pair, String businessType);// 1.【全仓】查询系统交易权限
     SwapSwitchPositionModeResponse swapCrossSwitchPositionModeResponse(String marginAccount, String positionMode);// 2.切换持仓模式
 
     SwapCrossOrderResponse swapCrossOrderRequest(SwapCrossOrderRequest request);// 3.合约下单（全仓模式）

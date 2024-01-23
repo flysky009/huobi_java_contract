@@ -10,7 +10,7 @@ public class HuobiFutureAPIConstants {
     public static final String CONTRACT_ELITE_ACCOUNT_RATIO = "/api/v1/contract_elite_account_ratio"; // 6.精英账户多空持仓对比-账户数
     public static final String CONTRACT_ELITE_POSITION_RATIO = "/api/v1/contract_elite_position_ratio"; // 7.精英账户多空持仓对比-持仓量
     public static final String CONTRACT_LIQUIDATION_ORDERS_V3  = "/api/v3/contract_liquidation_orders"; // 8.获取强平订单(新)
-        public static final String CONTRACT_SETTLEMENT_RECORDS = "/api/v1/contract_settlement_records"; // 9.查询平台历史结算记录
+    public static final String CONTRACT_SETTLEMENT_RECORDS = "/api/v1/contract_settlement_records"; // 9.查询平台历史结算记录
     public static final String CONTRACT_PRICE_LIMIT = "/api/v1/contract_price_limit"; // 10.获取合约最高限价和最低限价
     public static final String CONTRACT_OPEN_INTEREST = "/api/v1/contract_open_interest";// 11.获取当前可用合约总持仓量
     public static final String CONTRACT_DELIVERY_PRICE = "/api/v1/contract_delivery_price"; // 12.获取预估交割价

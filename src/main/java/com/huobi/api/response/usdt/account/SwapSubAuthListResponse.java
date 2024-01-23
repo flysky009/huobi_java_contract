@@ -13,6 +13,8 @@ import java.util.List;
 public class SwapSubAuthListResponse {
     private String status;
     private Long ts;
+
+    private List<DataBean> data;
     @AllArgsConstructor
     @Builder
     @Data

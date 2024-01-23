@@ -29,15 +29,12 @@ public class AccountAPIServiceImpl implements AccountAPIService {
 
 
     @Override
-    public SwapAccountInfoResponse getSwapAccountInfo(String contractCode, String tradePartition) {
+    public SwapAccountInfoResponse getSwapAccountInfo(String contractCode) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNotEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase().toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_ACCOUNT_INFO, params);
             logger.debug("body:{}", body);
@@ -53,15 +50,12 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapPositionInfoResponse getSwapPositionInfo(String contractCode, String tradePartition) {
+    public SwapPositionInfoResponse getSwapPositionInfo(String contractCode) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNotEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase().toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_POSITION_INFO, params);
             logger.debug("body:{}", body);
@@ -77,14 +71,11 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapAccountPositionInfoResponse getSwapAccountPositionInfo(String contractCode, String tradePartition) {
+    public SwapAccountPositionInfoResponse getSwapAccountPositionInfo(String contractCode) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("contract_code", contractCode.toUpperCase().toUpperCase());
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
-            }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_ACCOUNT_POSITION_INFO, params);
             logger.debug("body:{}", body);
             SwapAccountPositionInfoResponse response = JSON.parseObject(body, SwapAccountPositionInfoResponse.class);
@@ -99,15 +90,12 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapSubAccountListResponse getSwapSubAccountList(String contractCode, String tradePartition, String direct, Long fromId) {
+    public SwapSubAccountListResponse getSwapSubAccountList(String contractCode, String direct, Long fromId) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNotEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase().toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             if (StringUtils.isNotEmpty(direct)) {
                 params.put("direct", direct);
@@ -129,15 +117,12 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapSubAccountInfoResponse getSwapSubAccountInfo(String contractCode, Long subUid, String tradePartition) {
+    public SwapSubAccountInfoResponse getSwapSubAccountInfo(String contractCode, Long subUid) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNotEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase().toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             params.put("sub_uid", subUid);
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_SUB_ACCOUNT_INFO, params);
@@ -154,15 +139,12 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapSubPositionInfoResponse getSwapSubPositionInfo(String contractCode, Long subUid,String tradePartition) {
+    public SwapSubPositionInfoResponse getSwapSubPositionInfo(String contractCode, Long subUid) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNotEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase().toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             params.put("sub_uid", subUid);
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_SUB_POSITION_INFO, params);
@@ -179,7 +161,7 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapOrderLimitResponse getSwapOrderLimitResponse(String contractCode, String orderPriceType,String pair,String contractType,String businessType,String tradePartition) {
+    public SwapOrderLimitResponse getSwapOrderLimitResponse(String contractCode, String orderPriceType,String pair,String contractType,String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -196,9 +178,6 @@ public class AccountAPIServiceImpl implements AccountAPIService {
                 params.put("business_type",businessType);
             }
             params.put("order_price_type", orderPriceType);
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
-            }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_ORDER_LIMIT, params);
             logger.debug("body:{}", body);
             SwapOrderLimitResponse response = JSON.parseObject(body, SwapOrderLimitResponse.class);
@@ -213,7 +192,7 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapFeeResponse getSwapFeeResponse(String contractCode,String pair,String contractType,String businessType,String tradePartition) {
+    public SwapFeeResponse getSwapFeeResponse(String contractCode,String pair,String contractType,String businessType) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -229,9 +208,6 @@ public class AccountAPIServiceImpl implements AccountAPIService {
             if (businessType!=null){
                 params.put("business_type",businessType);
             }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
-            }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_FEE, params);
             logger.debug("body:{}", body);
             SwapFeeResponse response = JSON.parseObject(body, SwapFeeResponse.class);
@@ -246,15 +222,12 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapTransferLimitResponse getSwapTransferLimitResponse(String contractCode,String tradePartition) {
+    public SwapTransferLimitResponse getSwapTransferLimitResponse(String contractCode) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNoneEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_TRANSFER_LIMIT, params);
             logger.debug("body:{}", body);
@@ -270,15 +243,12 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapPositionLimitResponse getSwapPositionLimitResponse(String contractCode,String tradePartition) {
+    public SwapPositionLimitResponse getSwapPositionLimitResponse(String contractCode) {
         String body;
         try {
             Map<String, Object> params = new HashMap<>();
             if (StringUtils.isNoneEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_POSITION_LIMIT, params);
             logger.debug("body:{}", body);
@@ -392,15 +362,12 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapAvailableLevelRateResponse getSwapAvailableLevelRate(String contractCode,String tradePartition) {
+    public SwapAvailableLevelRateResponse getSwapAvailableLevelRate(String contractCode) {
         String body;
         Map<String, Object> params = new HashMap<>();
         try {
             if (StringUtils.isNoneEmpty(contractCode)) {
                 params.put("contract_code", contractCode.toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_AVAILABLE_LEVEL_RATE, params);
             logger.debug("body:{}", body);
@@ -434,7 +401,7 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapSubAccountInfoListResponse getSwapSubAccountInfoList(String contractCode, Integer pageIndex, Integer pageSize,String tradePartition) {
+    public SwapSubAccountInfoListResponse getSwapSubAccountInfoList(String contractCode, Integer pageIndex, Integer pageSize) {
         String body;
         Map<String, Object> params = new HashMap<>();
         try {
@@ -444,9 +411,6 @@ public class AccountAPIServiceImpl implements AccountAPIService {
             }
             if (pageSize != null) {
                 params.put("page_size", pageSize);
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             body = HbdmHttpClient.getInstance().doPost(api_key, secret_key, url_prex + HuobiLinearSwapAPIConstants.SWAP_SUB_ACCOUNT_INFO_LIST, params);
             logger.debug("body:{}", body);
@@ -481,15 +445,12 @@ public class AccountAPIServiceImpl implements AccountAPIService {
     }
 
     @Override
-    public SwapLeverPositionLimitResponse getSwapLeverPositionLimit(String contractCode, String tradePartition, Integer leverRate) {
+    public SwapLeverPositionLimitResponse getSwapLeverPositionLimit(String contractCode, Integer leverRate) {
         String body;
         Map<String, Object> params = new HashMap<>();
         try {
             if (StringUtils.isNotEmpty(contractCode)){
                 params.put("contract_code",contractCode.toUpperCase());
-            }
-            if (StringUtils.isNotEmpty(tradePartition)){
-                params.put("trade_partition",tradePartition);
             }
             if (leverRate!=null && leverRate!=0){
                 params.put("lever_rate",leverRate);
