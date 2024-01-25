@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.huobi.api.request.usdt.account.FixPositionMarginChangeRecordRequest;
 import com.huobi.api.request.usdt.account.FixPositionMarginChangeRequest;
 import com.huobi.api.response.usdt.account.*;
-import com.huobi.api.service.usdt.transfer.CrossTransferAPIServiceImpl;
 import com.huobi.api.service.usdt.unified_account.UnifiedAccountAPIServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

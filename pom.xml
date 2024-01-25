@@ -11,7 +11,7 @@
 
 
     <groupId>com.huobi.contract.api</groupId>
-    <artifactId>huobi-contract-api</artifactId>
+    <artifactId>huobi_contract_Java</artifactId>
     <version>1.0.1</version>
     
     <dependencies>
